@@ -1,8 +1,5 @@
 const initialState = {
-  user: {},
-  token: {},
-  pendingRequest: false,
-  error: null
+  user: {}
 };
 
 const userReducer = (state = initialState, action) => {

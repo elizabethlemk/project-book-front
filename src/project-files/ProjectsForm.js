@@ -16,7 +16,7 @@ class ProjectsForm extends React.Component {
         <Grid.Row columns={3} centered>
           <Header color="red"> {this.props.project.title} </Header>
           <Grid.Column width={4}>
-            <Comments />{" "}
+            <Comments />
           </Grid.Column>
           <Grid.Column width={7}>
             <MoodBoard />{" "}

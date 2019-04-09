@@ -1,4 +1,7 @@
-// Dispatch
+//---------------------//
+// D I S P A T C H
+//---------------------//
+
 export const createUser = userObj => {
   return { type: "CREATE_USER", payload: userObj };
 };
@@ -27,7 +30,9 @@ export const logInError = error => {
   return { type: "LOG_IN_ERROR", payload: error };
 };
 
-// Thunk
+//---------------------//
+// T H U N K
+//---------------------//
 export const addUser = formData => {
   return dispatch => {
     dispatch(logInPending());
@@ -45,15 +50,24 @@ export const addUser = formData => {
 export const checkToken = token => {
   return dispatch => {
     dispatch(logInPending());
-    dispatch(setToken(token));
-    return fetch("http://localhost:4000/api/v1/profile", {
-      method: "GET",
-      headers: {
-        Authorization: `Bearer ${token}`
-      }
-    })
-      .then(resp => resp.json())
-      .then(json => dispatch(setUser(json)));
+    if (localStorage.token) {
+      return fetch("http://localhost:4000/api/v1/profile", {
+        method: "GET",
+        headers: {
+          Authorization: `Bearer ${token}`
+        }
+      })
+        .then(resp => resp.json())
+        .then(json => {
+          console.log(json);
+          if (json.message) {
+            localStorage.removeItem("token");
+          } else {
+            dispatch(setToken(token));
+            dispatch(setUser(json));
+          }
+        });
+    }
   };
 };
 
@@ -69,7 +83,12 @@ export const getAuth = userInfo => {
       body: JSON.stringify({ user: userInfo })
     })
       .then(resp => resp.json())
-      .then(json => dispatch(logIn(json)))
+      .then(json => {
+        console.log(json);
+        if (!json.errors) {
+          dispatch(logIn(json));
+        }
+      })
       .catch(error => dispatch(logInError(error)));
   };
 };

@@ -1,29 +1,30 @@
-import React from 'react';
+import React from "react";
 import { Route, Switch, withRouter } from "react-router-dom";
 
-import './App.css';
+import "./App.css";
 
-import { connect } from 'react-redux'
-import { checkToken } from './actions/userAction'
+import { connect } from "react-redux";
+import { checkToken } from "./actions/userAction";
 
-import Home from './containers/Home'
-import Forum from './containers/Forum'
-import User from './containers/User'
-import Projects from './containers/Projects'
-import NavBar from './containers/NavBar'
-import Blogs from './containers/Blogs'
+import Home from "./containers/Home";
+import Forum from "./containers/Forum";
+import User from "./containers/User";
+import Projects from "./containers/Projects";
+import NavBar from "./containers/NavBar";
+import Blogs from "./containers/Blogs";
 
-import Error from './components/Error'
-import Login from './components/Login'
-import Settings from './components/Settings'
-import Signup from './components/Signup'
+import Error from "./components/Error";
+import Login from "./components/Login";
+import Settings from "./components/Settings";
+import Signup from "./components/Signup";
 
 class App extends React.Component {
-
   componentDidMount = () => {
     let token = localStorage.token;
-    this.props.history.push("/home")
-    return token ? this.props.checkToken(token) : this.props.history.push("/home")
+    this.props.history.push("/home");
+    return token
+      ? this.props.checkToken(token)
+      : this.props.history.push("/home");
   };
 
   render() {
@@ -47,4 +48,7 @@ class App extends React.Component {
   }
 }
 
-export default connect(null, {checkToken})(withRouter(App));
+export default connect(
+  null,
+  { checkToken }
+)(withRouter(App));

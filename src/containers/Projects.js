@@ -18,12 +18,17 @@ class Projects extends React.Component {
   state = {
     showForm: false,
     active: false,
-    project_id: null
+    project_id: null,
+    allProjects: []
+  };
+
+  componentDidMount = () => {
+    this.setState({ allProjects: this.props.user.projects });
   };
 
   componentDidUpdate = prevProps => {
-    if (this.props.user.project !== prevProps.user.project) {
-      console.log("New projects");
+    if (this.props.user.projects !== prevProps.user.projects) {
+      this.setState({ allProjects: this.props.user.projects });
     }
   };
 
@@ -39,14 +44,16 @@ class Projects extends React.Component {
   };
 
   render() {
+    console.log(this.props.user, this.state.allProjects);
+    const { allProjects } = this.state;
     return (
       <Container>
         <Grid columns={2}>
           <Grid.Column width={3} textAlign="center">
             <Header>Current Projects </Header>
             <List animated verticalAlign="middle">
-              {this.props.user.projects !== undefined
-                ? this.props.user.projects.map(project => (
+              {allProjects !== undefined && allProjects.length > 0
+                ? allProjects.map(project => (
                     <List.Item key={project.id}>
                       <List.Content>
                         <List.Header id={project.id} onClick={this.handleClick}>
@@ -66,10 +73,14 @@ class Projects extends React.Component {
 
             <Grid.Row>
               <Button animated onClick={this.handleShow}>
-                <Button.Content visible>
-                  <Icon name="plus" />
+                {this.state.showForm ? null : (
+                  <Button.Content visible>
+                    <Icon name="plus" />
+                  </Button.Content>
+                )}
+                <Button.Content hidden>
+                  {this.state.showForm ? <Icon name="x" /> : "Add"}
                 </Button.Content>
-                <Button.Content hidden>Add</Button.Content>
               </Button>
             </Grid.Row>
           </Grid.Column>
