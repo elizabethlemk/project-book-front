@@ -17,7 +17,6 @@ class BlogForm extends React.Component {
   };
 
   handleSubmit = () => {
-    console.log(this.state);
     this.props.addBlog(this.state);
     this.setState({ title: "", content: "" });
     this.props.loadBlogs(this.state.user_id);
@@ -28,7 +27,6 @@ class BlogForm extends React.Component {
     return (
       <Segment textAlign="center">
         <Form onSubmit={this.handleSubmit}>
-          <Header as="h2">New Blog Post</Header>
           <Form.Input
             label="Title"
             value={title}

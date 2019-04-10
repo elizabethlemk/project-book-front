@@ -20,10 +20,9 @@ import Signup from "./components/Signup";
 
 class App extends React.Component {
   componentDidMount = () => {
-    let token = localStorage.token;
     this.props.history.push("/home");
-    return token
-      ? this.props.checkToken(token)
+    return localStorage.token
+      ? this.props.checkToken()
       : this.props.history.push("/home");
   };
 

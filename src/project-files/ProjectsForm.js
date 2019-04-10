@@ -1,30 +1,35 @@
 import React from "react";
 import MoodBoard from "./MoodBoard";
 import Comments from "./Comments";
+import ColorPalette from "./ColorPalette";
 import References from "./References";
-import { Grid, Header } from "semantic-ui-react";
+import { Checkbox, Container, Grid, Header, Item } from "semantic-ui-react";
 import { connect } from "react-redux";
 
 class ProjectsForm extends React.Component {
-  handleDelete = () => {
-    console.log("delete this shit");
-  };
-
   render() {
     return (
       <Grid columns="equal" centered>
+        <div style={{ flex: 1 }} />
+        <Checkbox
+          toggle
+          id="completed"
+          style={{ marginRight: "3vw", marginTop: "2vh" }}
+          label="Completed?"
+        />
         <Grid.Row columns={3} centered>
           <Header className="moodboard-title">
-            {" "}
             {this.props.project.title}{" "}
           </Header>
-          <Grid.Column width={4}>
+
+          <Grid.Column width={3}>
             <Comments />
           </Grid.Column>
-          <Grid.Column width={7}>
-            <MoodBoard />{" "}
+          <Grid.Column width={9}>
+            <ColorPalette />
+            <MoodBoard />
           </Grid.Column>
-          <Grid.Column width={5}>
+          <Grid.Column width={4}>
             <References />
           </Grid.Column>
         </Grid.Row>

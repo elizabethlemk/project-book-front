@@ -1,12 +1,13 @@
 import React from "react";
 import BlogForm from "../blog-files/BlogForm";
-import { Container, Item } from "semantic-ui-react";
+import { Button, Container, Item } from "semantic-ui-react";
 import { connect } from "react-redux";
 import { loadBlogs } from "../actions/blogAction";
 
 class Blogs extends React.Component {
   state = {
-    blog_posts: []
+    blog_posts: [],
+    active: false
   };
 
   componentDidMount = () => {
@@ -20,10 +21,28 @@ class Blogs extends React.Component {
     }
   };
 
+  handleClick = () => {
+    this.setState({ active: !this.state.active });
+  };
+
   render() {
     return (
       <Container>
-        <BlogForm />
+        {this.state.active ? (
+          <Button circular icon="x" onClick={this.handleClick} size="huge" />
+        ) : (
+          <div>
+            <Button
+              circular
+              icon="plus"
+              onClick={this.handleClick}
+              size="huge"
+            />
+            Add a new blog post
+          </div>
+        )}
+
+        {this.state.active ? <BlogForm /> : null}
         <Item.Group divided>
           {this.state.blog_posts.length > 0
             ? this.state.blog_posts.map(blog => (

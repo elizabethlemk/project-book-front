@@ -1,5 +1,5 @@
 import React from "react";
-import { Button, Container, Form } from "semantic-ui-react";
+import { Button, Form, Menu } from "semantic-ui-react";
 import { connect } from "react-redux";
 import { addProject, loadProject } from "../actions/projectAction";
 import { checkToken } from "../actions/userAction";
@@ -12,8 +12,8 @@ class CreateProject extends React.Component {
 
   handleSubmit = () => {
     const projectObj = { title: this.state.title, user_id: this.props.user.id };
-    this.props.addProject(projectObj, this.props.token);
-    this.props.checkToken(this.props.token);
+    this.props.addProject(projectObj);
+    this.props.checkToken();
     this.setState({ title: "" });
   };
 
@@ -23,7 +23,7 @@ class CreateProject extends React.Component {
 
   render() {
     return (
-      <Container>
+      <Menu.Item>
         <Form onSubmit={this.handleSubmit}>
           <Form.Input
             name="title"
@@ -33,7 +33,7 @@ class CreateProject extends React.Component {
           />
           <Button type="submit">Create a Project</Button>
         </Form>
-      </Container>
+      </Menu.Item>
     );
   }
 }
@@ -41,7 +41,6 @@ class CreateProject extends React.Component {
 const mapStateToProps = state => {
   return {
     user: state.userReducer.user,
-    token: state.userReducer.token,
     project: state.projectReducer.project
   };
 };

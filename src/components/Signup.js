@@ -1,5 +1,5 @@
 import React from "react";
-import { Divider, Form, Header } from "semantic-ui-react";
+import { Divider, Form, Header, Segment } from "semantic-ui-react";
 import { DateInput } from "semantic-ui-calendar-react";
 
 import { withRouter } from "react-router-dom";
@@ -70,99 +70,99 @@ class Signup extends React.Component {
       password,
       username,
       password_confirmation,
-      birthday,
-      image
+      birthday
     } = this.state;
     return (
-      <Form onSubmit={this.handleSubmit}>
-        <Form.Input
-          type="file"
-          value={image}
-          name="image"
-          label="Profile Picture"
-          onChange={this.handleFile}
-        />
-
-        <Form.Group widths="equal">
+      <Segment textAlign="center">
+        <Form onSubmit={this.handleSubmit}>
           <Form.Input
-            fluid
-            label="First name"
-            placeholder="First name"
-            name="first_name"
-            onChange={this.handleChange}
-            value={first_name}
+            type="file"
+            name="image"
+            label="Profile Picture"
+            onChange={this.handleFile}
           />
 
-          <Form.Input
-            fluid
-            label="Last name"
-            placeholder="Last name"
-            name="last_name"
-            onChange={this.handleChange}
-            value={last_name}
-          />
-        </Form.Group>
-        <Form.Group widths="equal">
-          <Form.Input
-            fluid
-            label="Email Address"
-            placeholder="example@projectbook.com"
-            name="email"
-            onChange={this.handleChange}
-            value={email}
-          />
+          <Form.Group widths="equal">
+            <Form.Input
+              fluid
+              label="First name"
+              placeholder="First name"
+              name="first_name"
+              onChange={this.handleChange}
+              value={first_name}
+            />
 
-          <DateInput
-            label="Birthday"
-            name="birthday"
-            placeholder="Date"
-            dateFormat="MM/DD/YYYY"
-            value={birthday}
-            iconPosition="left"
-            onChange={this.handleChange}
-          />
-        </Form.Group>
-        <Divider horizontal>
-          <Header as="h2">Account Details</Header>
-        </Divider>
-        <Form.Group widths="equal">
-          <Form.Input
-            fluid
-            label="Username"
-            value={username}
-            placeholder="Username"
-            name="username"
-            onChange={this.handleChange}
-          />
-        </Form.Group>
-        <Form.Group widths="equal">
-          <Form.Input
-            fluid
-            label="Password"
-            value={password}
-            placeholder="Password"
-            type="password"
-            name="password"
-            onChange={this.handleChange}
-          />
-          <Form.Input
-            fluid
-            label="Password Confirmation"
-            value={password_confirmation}
-            placeholder="Retype Password"
-            type="password"
-            name="password_confirmation"
-            onChange={this.handleChange}
-          />
-        </Form.Group>
-        <Form.Button>Submit</Form.Button>
-      </Form>
+            <Form.Input
+              fluid
+              label="Last name"
+              placeholder="Last name"
+              name="last_name"
+              onChange={this.handleChange}
+              value={last_name}
+            />
+          </Form.Group>
+          <Form.Group widths="equal">
+            <Form.Input
+              fluid
+              label="Email Address"
+              placeholder="example@projectbook.com"
+              name="email"
+              onChange={this.handleChange}
+              value={email}
+            />
+
+            <DateInput
+              label="Birthday"
+              name="birthday"
+              placeholder="Date"
+              dateFormat="MM/DD/YYYY"
+              value={birthday}
+              iconPosition="left"
+              onChange={this.handleChange}
+            />
+          </Form.Group>
+          <Divider horizontal>
+            <Header as="h2">Account Details</Header>
+          </Divider>
+          <Form.Group widths="equal">
+            <Form.Input
+              fluid
+              label="Username"
+              value={username}
+              placeholder="Username"
+              name="username"
+              onChange={this.handleChange}
+            />
+          </Form.Group>
+          <Form.Group widths="equal">
+            <Form.Input
+              fluid
+              label="Password"
+              value={password}
+              placeholder="Password"
+              type="password"
+              name="password"
+              onChange={this.handleChange}
+            />
+            <Form.Input
+              fluid
+              label="Password Confirmation"
+              value={password_confirmation}
+              placeholder="Retype Password"
+              type="password"
+              name="password_confirmation"
+              onChange={this.handleChange}
+            />
+          </Form.Group>
+          <Form.Button>Submit</Form.Button>
+        </Form>
+      </Segment>
     );
   }
 }
 
 const mapStateToProps = state => {
-  return { user: state.userReducer.user, error: null };
+  return { user: state.userReducer.user, error: state.userReducer.error };
 };
 
 export default connect(

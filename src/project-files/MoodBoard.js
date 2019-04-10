@@ -17,7 +17,7 @@ class MoodBoard extends React.Component {
 
   handleFile = event => {
     this.setState({
-      image: [event.target.files[0]]
+      image: event.target.files[0]
     });
   };
 
@@ -34,7 +34,7 @@ class MoodBoard extends React.Component {
   render() {
     console.log(this.state, this.props);
     return (
-      <Container>
+      <Container id="moodboard-container">
         <Table textAlign="center">
           <Table.Header>
             <Table.Row>

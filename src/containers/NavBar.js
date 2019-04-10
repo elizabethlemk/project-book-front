@@ -88,32 +88,34 @@ class NavBar extends React.Component {
           onClick={this.handleItemClick}
         />
 
-        <Menu.Item
-          as={NavLink}
-          exact
-          to="/projects"
-          name="projects"
-          active={activeItem === "projects"}
-          onClick={this.handleItemClick}
-        />
-
-        <Menu.Item
-          as={NavLink}
-          exact
-          to="/blogs"
-          name="blogs"
-          active={activeItem === "blogs"}
-          onClick={this.handleItemClick}
-        />
-
-        <Menu.Item
-          as={NavLink}
-          exact
-          to="/forum"
-          name="forum"
-          active={activeItem === "forum"}
-          onClick={this.handleItemClick}
-        />
+        {localStorage.token ? (
+          <Menu.Menu>
+            <Menu.Item
+              as={NavLink}
+              exact
+              to="/projects"
+              name="projects"
+              active={activeItem === "projects"}
+              onClick={this.handleItemClick}
+            />
+            <Menu.Item
+              as={NavLink}
+              exact
+              to="/blogs"
+              name="blogs"
+              active={activeItem === "blogs"}
+              onClick={this.handleItemClick}
+            />
+            <Menu.Item
+              as={NavLink}
+              exact
+              to="/forum"
+              name="forum"
+              active={activeItem === "forum"}
+              onClick={this.handleItemClick}
+            />{" "}
+          </Menu.Menu>
+        ) : null}
 
         <Menu.Menu position="right">
           <Header as="h1" id="middle">

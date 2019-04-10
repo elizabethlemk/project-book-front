@@ -10,10 +10,6 @@ export const setUser = userObj => {
   return { type: "SET_USER", payload: userObj };
 };
 
-export const setToken = token => {
-  return { type: "SET_TOKEN", payload: token };
-};
-
 export const logIn = userObj => {
   return { type: "LOG_IN", payload: userObj };
 };
@@ -47,23 +43,21 @@ export const addUser = formData => {
   };
 };
 
-export const checkToken = token => {
+export const checkToken = () => {
   return dispatch => {
     dispatch(logInPending());
     if (localStorage.token) {
       return fetch("http://localhost:4000/api/v1/profile", {
         method: "GET",
         headers: {
-          Authorization: `Bearer ${token}`
+          Authorization: `Bearer ${localStorage.token}`
         }
       })
         .then(resp => resp.json())
         .then(json => {
-          console.log(json);
           if (json.message) {
             localStorage.removeItem("token");
           } else {
-            dispatch(setToken(token));
             dispatch(setUser(json));
           }
         });
@@ -84,7 +78,6 @@ export const getAuth = userInfo => {
     })
       .then(resp => resp.json())
       .then(json => {
-        console.log(json);
         if (!json.errors) {
           dispatch(logIn(json));
         }

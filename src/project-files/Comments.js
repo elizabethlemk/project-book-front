@@ -54,7 +54,7 @@ class Comments extends React.Component {
       type_name: "note",
       comment: this.state.comment
     };
-    this.props.addComment(commentObj, this.props.token);
+    this.props.addComment(commentObj);
     this.setState({ comment: "", active: false });
   };
 
@@ -144,7 +144,6 @@ class Comments extends React.Component {
 const mapStateToProps = state => {
   return {
     user: state.userReducer.user,
-    token: state.userReducer.token,
     project: state.projectReducer.project,
     comments: state.projectReducer.comments
   };

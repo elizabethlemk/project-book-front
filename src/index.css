@@ -5,12 +5,23 @@
   background-color: pink !important;
   font-family: "Homemade Apple", cursive !important;
   font-size: 5rem !important;
+  width: 100vw;
 }
 
 .moodboard-title {
   font-family: "Homemade Apple", cursive !important;
   font-size: 3rem !important;
-  margin-top: 2vh !important;
+  margin-top: -2.5vh !important;
+  margin-bottom: 2vh !important;
+}
+
+#moodboard-container {
+  margin-top: 3rem;
+}
+
+.ui.toggle.checkbox input:focus:checked ~ .box:before,
+.ui.toggle.checkbox input:focus:checked ~ label:before {
+  background-color: #b5cc18 !important;
 }
 
 #project-header {

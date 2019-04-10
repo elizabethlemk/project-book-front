@@ -38,13 +38,13 @@ export const createBoardImage = images => {
 // T H U N K
 //---------------------//
 
-export const addProject = (formData, token) => {
+export const addProject = formData => {
   return dispatch => {
     dispatch(pendingProject());
     return fetch("http://localhost:4000/api/v1/projects", {
       method: "POST",
       headers: {
-        Authorization: `Bearer ${token}`,
+        Authorization: `Bearer ${localStorage.token}`,
         "Content-Type": "application/json"
       },
       body: JSON.stringify({ project: formData })
@@ -72,13 +72,13 @@ export const loadProject = projectId => {
   };
 };
 
-export const addComment = (formData, token) => {
+export const addComment = formData => {
   return dispatch => {
     dispatch(pendingComment());
     return fetch("http://localhost:4000/api/v1/notes", {
       method: "POST",
       headers: {
-        Authorization: `Bearer ${token}`,
+        Authorization: `Bearer ${localStorage.token}`,
         "Content-Type": "application/json"
       },
       body: JSON.stringify({ notes: formData })

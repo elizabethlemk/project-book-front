@@ -1,5 +1,5 @@
 import React from "react";
-import { Form } from "semantic-ui-react";
+import { Form, Segment } from "semantic-ui-react";
 
 import { connect } from "react-redux";
 import { getAuth } from "../actions/userAction";
@@ -29,31 +29,33 @@ class Login extends React.Component {
   render() {
     const { username, password } = this.state;
     return (
-      <Form onSubmit={this.handleSubmit}>
-        <Form.Input
-          label="Username"
-          placeholder="username"
-          name="username"
-          value={username}
-          onChange={this.handleChange}
-        />
+      <Segment textAlign="center">
+        <Form onSubmit={this.handleSubmit}>
+          <Form.Input
+            label="Username"
+            placeholder="username"
+            name="username"
+            value={username}
+            onChange={this.handleChange}
+          />
 
-        <Form.Input
-          label="Password"
-          type="password"
-          placeholder="password"
-          name="password"
-          value={password}
-          onChange={this.handleChange}
-        />
-        <Form.Button>Submit</Form.Button>
-      </Form>
+          <Form.Input
+            label="Password"
+            type="password"
+            placeholder="password"
+            name="password"
+            value={password}
+            onChange={this.handleChange}
+          />
+          <Form.Button>Submit</Form.Button>
+        </Form>
+      </Segment>
     );
   }
 }
 
 const mapStateToProps = state => {
-  return { user: state.userReducer.user, error: null };
+  return { user: state.userReducer.user, error: state.userReducer.error };
 };
 
 export default connect(

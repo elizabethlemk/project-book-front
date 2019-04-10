@@ -142,7 +142,6 @@ class References extends React.Component {
 const mapStateToProps = state => {
   return {
     user: state.userReducer.user,
-    token: state.userReducer.token,
     project: state.projectReducer.project,
     links: state.projectReducer.links
   };
