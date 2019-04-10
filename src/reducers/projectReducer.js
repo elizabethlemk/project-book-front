@@ -25,6 +25,7 @@ const projectReducer = (state = initialState, action) => {
         ...state,
         project: action.payload.project,
         links: action.payload.project.links,
+        images: action.payload.project.images.image_urls,
         comments: action.payload.project.notes,
         pendingRequest: false,
         error: null
@@ -41,8 +42,7 @@ const projectReducer = (state = initialState, action) => {
     case "CREATE_REF":
       return { ...state, links: [...state.links, action.payload.link] };
     case "CREATE_IMAGE":
-      console.log([action.payload.images]);
-      return { ...state, images: [action.payload.images] };
+      return state;
     default:
       return state;
   }

@@ -1,19 +1,18 @@
 import React from "react";
-import { Container, Grid } from "semantic-ui-react";
+import {
+  Card,
+  Container,
+  Grid,
+  Header,
+  Icon,
+  Image,
+  List,
+  Segment
+} from "semantic-ui-react";
 
 import { connect } from "react-redux";
 
 class User extends React.Component {
-  renderProjects = () => {
-    return (
-      <ul>
-        {this.props.user.projects.map(project => (
-          <li>{project.title}</li>
-        ))}
-      </ul>
-    );
-  };
-
   render() {
     const {
       username,
@@ -27,31 +26,59 @@ class User extends React.Component {
     } = this.props.user;
     console.log(this.props.user);
     return (
-      <Container>
+      <Container id="user-container">
         {Object.keys(this.props.user).length > 0 ? (
-          <Grid centered columns={3}>
-            <Grid.Column centered>
-              <Grid.Row>{username}</Grid.Row>
-              <Grid.Row>
-                <img
-                  src={image.image_url}
-                  alt="profile img"
-                  className="profile-img"
-                />
-              </Grid.Row>
-              <Grid.Row>
-                Name: {first_name} {last_name}
-              </Grid.Row>
-              <Grid.Row>Email: {email}</Grid.Row>
-              <Grid.Row>Birthday: {birthday}</Grid.Row>
+          <Grid columns={3} centered>
+            <Grid.Column>
+              <Card>
+                <Image src={image.image_url} />
+                <Card.Content>
+                  <Card.Header textAlign="center" id="username">
+                    {username}
+                  </Card.Header>
+                  <Card.Description>
+                    <Icon name="user" />
+                    {first_name} {last_name}
+                  </Card.Description>
+                  <Card.Meta>
+                    <span className="date">
+                      <Icon name="birthday" />
+                      {birthday}
+                    </span>
+                  </Card.Meta>
+                </Card.Content>
+                <Card.Content extra>
+                  <Icon name="mail" />
+                  {email}
+                </Card.Content>
+              </Card>
             </Grid.Column>
-            <Grid.Column centered>
-              <Grid.Row>
-                {blog_posts.length > 0 ? "Blogs go here" : "No blogs!"}
-              </Grid.Row>
-              <Grid.Row>
-                {projects.length > 0 ? this.renderProjects : "No projects!"}
-              </Grid.Row>
+            <Grid.Column verticalAlign="middle">
+              {blog_posts.length > 0 ? (
+                <Segment>
+                  <Header>Blogs: </Header>
+                  <List>
+                    {this.props.user.blog_posts.map(blog => (
+                      <List.Item key={blog.id}>{blog.title}</List.Item>
+                    ))}
+                  </List>
+                </Segment>
+              ) : (
+                "No blogs!"
+              )}
+
+              {projects.length > 0 ? (
+                <Segment>
+                  <Header>Projects: </Header>
+                  <List>
+                    {this.props.user.projects.map(project => (
+                      <List.Item key={project.id}>{project.title}</List.Item>
+                    ))}
+                  </List>
+                </Segment>
+              ) : (
+                "No projects!"
+              )}
             </Grid.Column>
           </Grid>
         ) : null}

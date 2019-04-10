@@ -2,7 +2,7 @@ import React from "react";
 import MoodBoard from "./MoodBoard";
 import Comments from "./Comments";
 import References from "./References";
-import { Grid, Header, Icon } from "semantic-ui-react";
+import { Grid, Header } from "semantic-ui-react";
 import { connect } from "react-redux";
 
 class ProjectsForm extends React.Component {
@@ -14,7 +14,10 @@ class ProjectsForm extends React.Component {
     return (
       <Grid columns="equal" centered>
         <Grid.Row columns={3} centered>
-          <Header color="red"> {this.props.project.title} </Header>
+          <Header className="moodboard-title">
+            {" "}
+            {this.props.project.title}{" "}
+          </Header>
           <Grid.Column width={4}>
             <Comments />
           </Grid.Column>

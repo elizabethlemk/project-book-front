@@ -1,0 +1,31 @@
+@import url("https://fonts.googleapis.com/css?family=Arbutus+Slab|Courgette|Homemade+Apple");
+.quote {
+  margin-top: 40vh !important;
+  font-family: "Homemade Apple", cursive !important;
+  font-size: 5rem !important;
+}
+
+.moodboard-title {
+  font-family: "Homemade Apple", cursive !important;
+  font-size: 3rem !important;
+  margin-top: 2vh !important;
+}
+
+#project-header {
+  font-family: "Arbutus Slab", serif !important;
+  color: pink !important;
+}
+
+#project-container {
+  margin-top: 20vh !important;
+}
+
+#project-item:hover {
+  background-color: pink !important;
+}
+
+#username {
+  font-family: "Homemade Apple", cursive !important;
+  font-size: 3rem !important;
+  color: pink !important;
+}

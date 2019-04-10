@@ -58,7 +58,6 @@ class References extends React.Component {
   };
 
   render() {
-    console.log(this.props.links);
     return (
       <DragDropContext onDragEnd={this.onDragEnd}>
         <Table textAlign="center">
@@ -115,10 +114,18 @@ class References extends React.Component {
                   <Table.Row>
                     <Table.Cell>
                       <Button animated onClick={this.handleShow}>
-                        <Button.Content visible>
-                          <Icon name="plus" />
+                        {this.state.active ? (
+                          <Button.Content visible>
+                            <Icon name="x" />
+                          </Button.Content>
+                        ) : (
+                          <Button.Content visible>
+                            <Icon name="plus" />
+                          </Button.Content>
+                        )}
+                        <Button.Content hidden>
+                          {this.state.active ? "Cancel" : "Add"}
                         </Button.Content>
-                        <Button.Content hidden>Add</Button.Content>
                       </Button>
                     </Table.Cell>
                   </Table.Row>

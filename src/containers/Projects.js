@@ -1,13 +1,5 @@
 import React from "react";
-import {
-  Button,
-  Container,
-  Grid,
-  Header,
-  Icon,
-  Label,
-  List
-} from "semantic-ui-react";
+import { Button, Container, Grid, Header, Icon, List } from "semantic-ui-react";
 import { connect } from "react-redux";
 import { loadProject } from "../actions/projectAction";
 
@@ -44,17 +36,16 @@ class Projects extends React.Component {
   };
 
   render() {
-    console.log(this.props.user, this.state.allProjects);
     const { allProjects } = this.state;
     return (
       <Container>
         <Grid columns={2}>
           <Grid.Column width={3} textAlign="center">
-            <Header>Current Projects </Header>
-            <List animated verticalAlign="middle">
+            <List animated verticalAlign="middle" id="project-container">
+              <Header id="project-header">Current Projects </Header>
               {allProjects !== undefined && allProjects.length > 0
                 ? allProjects.map(project => (
-                    <List.Item key={project.id}>
+                    <List.Item key={project.id} id="project-item">
                       <List.Content>
                         <List.Header id={project.id} onClick={this.handleClick}>
                           <Icon name="caret right" />
@@ -73,13 +64,17 @@ class Projects extends React.Component {
 
             <Grid.Row>
               <Button animated onClick={this.handleShow}>
-                {this.state.showForm ? null : (
+                {this.state.showForm ? (
+                  <Button.Content visible>
+                    <Icon name="x" />
+                  </Button.Content>
+                ) : (
                   <Button.Content visible>
                     <Icon name="plus" />
                   </Button.Content>
                 )}
                 <Button.Content hidden>
-                  {this.state.showForm ? <Icon name="x" /> : "Add"}
+                  {this.state.showForm ? "Cancel" : "Add"}
                 </Button.Content>
               </Button>
             </Grid.Row>

@@ -30,8 +30,8 @@ export const createRef = linkObj => {
   return { type: "CREATE_REF", payload: linkObj };
 };
 
-export const createBoardImage = img => {
-  return { type: "CREATE_IMAGE", payload: img };
+export const createBoardImage = images => {
+  return { type: "CREATE_IMAGE", payload: images };
 };
 
 //---------------------//
@@ -118,7 +118,6 @@ export const addBoardImage = (formData, projectId) => {
     })
       .then(resp => resp.json())
       .then(json => {
-        console.log(json);
         dispatch(createBoardImage(json));
       });
   };
