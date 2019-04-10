@@ -1,6 +1,7 @@
 @import url("https://fonts.googleapis.com/css?family=Arbutus+Slab|Courgette|Homemade+Apple");
 .quote {
-  margin-top: 40vh !important;
+  margin-top: 35vh !important;
+  background-color: pink !important;
   font-family: "Homemade Apple", cursive !important;
   font-size: 5rem !important;
 }

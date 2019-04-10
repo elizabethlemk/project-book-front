@@ -57,7 +57,7 @@ class User extends React.Component {
               {blog_posts.length > 0 ? (
                 <Segment>
                   <Header>Blogs: </Header>
-                  <List>
+                  <List divided>
                     {this.props.user.blog_posts.map(blog => (
                       <List.Item key={blog.id}>{blog.title}</List.Item>
                     ))}
@@ -70,7 +70,7 @@ class User extends React.Component {
               {projects.length > 0 ? (
                 <Segment>
                   <Header>Projects: </Header>
-                  <List>
+                  <List divided>
                     {this.props.user.projects.map(project => (
                       <List.Item key={project.id}>{project.title}</List.Item>
                     ))}
