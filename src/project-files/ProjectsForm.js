@@ -25,7 +25,7 @@ class ProjectsForm extends React.Component {
             <MoodBoard />{" "}
           </Grid.Column>
           <Grid.Column width={5}>
-            <References />{" "}
+            <References />
           </Grid.Column>
         </Grid.Row>
       </Grid>

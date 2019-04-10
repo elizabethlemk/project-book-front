@@ -7,17 +7,14 @@
   background-size: cover;
 }
 
-#middle {
-  margin-top: 0.3rem !important;
-  font-size: 2em;
-  letter-spacing: 0.5em;
-  text-transform: uppercase;
-  font-family: monospace !important;
-}
-
 .profile-img {
   height: 500px;
   width: auto;
+}
+
+.ui button {
+  background: #ffbfcb none !important;
+  color: white !important;
 }
 
 #user-container {

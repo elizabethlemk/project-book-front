@@ -56,12 +56,12 @@ export const addProject = (formData, token) => {
   };
 };
 
-export const loadProject = (projectId, token) => {
+export const loadProject = projectId => {
   return dispatch => {
     return fetch(`http://localhost:4000/api/v1/projects/${projectId}`, {
       method: "GET",
       headers: {
-        Authorization: `Bearer ${token}`,
+        Authorization: `Bearer ${localStorage.token}`,
         "Content-Type": "application/json"
       }
     })
