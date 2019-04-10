@@ -122,3 +122,19 @@ export const addBoardImage = (formData, projectId) => {
       });
   };
 };
+
+export const changeCompleted = (toggleInfo, projectId) => {
+  return dispatch => {
+    return fetch(`http://localhost:4000/api/v1/projects/${projectId}`, {
+      method: "PATCH",
+      headers: {
+        Authorization: `Bearer ${localStorage.token}`,
+        "content-type": "application/json",
+        accepts: "application/json"
+      },
+      body: JSON.stringify({ completed: toggleInfo })
+    })
+      .then(resp => resp.json())
+      .then(json => console.log);
+  };
+};

@@ -5,6 +5,7 @@ import "./App.css";
 
 import { connect } from "react-redux";
 import { checkToken } from "./actions/userAction";
+import { loadBlogs } from "./actions/blogAction";
 
 import Home from "./containers/Home";
 import Forum from "./containers/Forum";
@@ -21,9 +22,11 @@ import Signup from "./components/Signup";
 class App extends React.Component {
   componentDidMount = () => {
     this.props.history.push("/home");
-    return localStorage.token
-      ? this.props.checkToken()
-      : this.props.history.push("/home");
+    if (localStorage.token) {
+      this.props.checkToken();
+    } else {
+      this.props.history.push("/home");
+    }
   };
 
   render() {
@@ -47,7 +50,11 @@ class App extends React.Component {
   }
 }
 
+const mapStateToProps = state => {
+  return { user: state.userReducer.user };
+};
+
 export default connect(
-  null,
-  { checkToken }
+  mapStateToProps,
+  { checkToken, loadBlogs }
 )(withRouter(App));

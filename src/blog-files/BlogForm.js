@@ -1,5 +1,5 @@
 import React from "react";
-import { Button, Form, Header, Segment } from "semantic-ui-react";
+import { Button, Form, Segment } from "semantic-ui-react";
 import { connect } from "react-redux";
 import { addBlog, loadBlogs } from "../actions/blogAction";
 

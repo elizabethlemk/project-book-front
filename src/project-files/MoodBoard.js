@@ -9,9 +9,15 @@ class MoodBoard extends React.Component {
     allImages: []
   };
 
+  componentDidMount = () => {
+    setTimeout(() => {
+      this.setState({ allImages: this.props.project.images.image_urls });
+    }, 500);
+  };
+
   componentDidUpdate = prevProps => {
-    if (this.props.images !== prevProps.images) {
-      this.setState({ allImages: this.props.images });
+    if (this.props.project !== prevProps.project) {
+      this.setState({ allImages: this.props.project.images.image_urls });
     }
   };
 
@@ -26,13 +32,14 @@ class MoodBoard extends React.Component {
     const formData = new FormData();
     formData.append("project[images]", this.state.image);
     this.props.addBoardImage(formData, this.props.project.id);
+    this.props.loadProject(this.props.project.id);
     this.setState({
       image: []
     });
   };
 
   render() {
-    console.log(this.state, this.props);
+    // console.log(this.state, this.props);
     return (
       <Container id="moodboard-container">
         <Table textAlign="center">
@@ -58,8 +65,8 @@ class MoodBoard extends React.Component {
             </Table.Row>
           </Table.Body>
         </Table>
-        <Grid columns={2}>
-          {this.props.images.map((image, index) => (
+        <Grid columns={3}>
+          {this.state.allImages.map((image, index) => (
             <Grid.Column key={index}>
               <Image src={image} />
             </Grid.Column>

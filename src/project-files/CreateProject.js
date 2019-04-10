@@ -11,7 +11,11 @@ class CreateProject extends React.Component {
   };
 
   handleSubmit = () => {
-    const projectObj = { title: this.state.title, user_id: this.props.user.id };
+    const projectObj = {
+      title: this.state.title,
+      user_id: this.props.user.id,
+      completed: false
+    };
     this.props.addProject(projectObj);
     this.props.checkToken();
     this.setState({ title: "" });

@@ -3,24 +3,50 @@ import MoodBoard from "./MoodBoard";
 import Comments from "./Comments";
 import ColorPalette from "./ColorPalette";
 import References from "./References";
-import { Checkbox, Container, Grid, Header, Item } from "semantic-ui-react";
+import { Checkbox, Grid, Header } from "semantic-ui-react";
 import { connect } from "react-redux";
+import { changeCompleted } from "../actions/projectAction";
 
 class ProjectsForm extends React.Component {
+  state = {
+    completed: false
+  };
+
+  componentDidMount = () => {
+    setTimeout(() => {
+      if (this.props.project.completed !== null) {
+        this.setState({ completed: this.props.project.completed });
+      }
+    }, 200);
+  };
+
+  componentDidUpdate = prevProps => {
+    if (this.props.project !== prevProps.project) {
+      this.setState({ completed: this.props.project.completed });
+    }
+  };
+
+  handleToggle = event => {
+    this.setState({ completed: event.target.checked }, () =>
+      this.props.changeCompleted(this.state.completed, this.props.project.id)
+    );
+  };
+
   render() {
+    console.log(this.props.project);
     return (
       <Grid columns="equal" centered>
         <div style={{ flex: 1 }} />
         <Checkbox
           toggle
+          checked={this.state.completed}
+          onChange={this.handleToggle}
           id="completed"
           style={{ marginRight: "3vw", marginTop: "2vh" }}
           label="Completed?"
         />
         <Grid.Row columns={3} centered>
-          <Header className="moodboard-title">
-            {this.props.project.title}{" "}
-          </Header>
+          <Header id="moodboard-title">{this.props.project.title} </Header>
 
           <Grid.Column width={3}>
             <Comments />
@@ -45,4 +71,7 @@ const mapStateToProps = state => {
   };
 };
 
-export default connect(mapStateToProps)(ProjectsForm);
+export default connect(
+  mapStateToProps,
+  { changeCompleted }
+)(ProjectsForm);

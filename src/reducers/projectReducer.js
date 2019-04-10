@@ -21,6 +21,7 @@ const projectReducer = (state = initialState, action) => {
         error: null
       };
     case "GET_PROJECT":
+      console.log(action.payload);
       return {
         ...state,
         project: action.payload.project,

@@ -11,12 +11,12 @@ class Blogs extends React.Component {
   };
 
   componentDidMount = () => {
-    this.props.loadBlogs(this.props.user.id);
     this.setState({ blog_posts: this.props.blogs });
   };
 
   componentDidUpdate = prevProps => {
     if (this.props.blogs !== prevProps.blogs) {
+      this.props.loadBlogs(this.props.user.id);
       this.setState({ blog_posts: this.props.blogs });
     }
   };
@@ -27,7 +27,7 @@ class Blogs extends React.Component {
 
   render() {
     return (
-      <Container>
+      <Container style={{ marginTop: "4vh" }}>
         {this.state.active ? (
           <Button circular icon="x" onClick={this.handleClick} size="huge" />
         ) : (
@@ -43,7 +43,7 @@ class Blogs extends React.Component {
         )}
 
         {this.state.active ? <BlogForm /> : null}
-        <Item.Group divided>
+        <Item.Group divided style={{ marginTop: "6vh" }}>
           {this.state.blog_posts.length > 0
             ? this.state.blog_posts.map(blog => (
                 <Item key={blog.id}>

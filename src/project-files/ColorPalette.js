@@ -1,5 +1,5 @@
 import React from "react";
-import { Container, Grid, Icon, Table } from "semantic-ui-react";
+import { Button, Container, Grid, Icon, Table } from "semantic-ui-react";
 import { connect } from "react-redux";
 
 class ColorPalette extends React.Component {
@@ -50,6 +50,9 @@ class ColorPalette extends React.Component {
             {" "}
             <Icon name="square full" size="huge" color="red" />
           </Grid.Column>
+          <Grid.Row>
+            <Button circular icon="plus" />
+          </Grid.Row>
         </Grid>
       </Container>
     );

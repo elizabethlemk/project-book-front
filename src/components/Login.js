@@ -19,11 +19,13 @@ class Login extends React.Component {
   handleSubmit = event => {
     event.preventDefault();
     this.props.getAuth(this.state);
-    if (localStorage.token) {
-      this.props.history.push("/home");
-    } else {
-      this.props.history.push("/login");
-    }
+    setTimeout(() => {
+      if (localStorage.token) {
+        this.props.history.push("/home");
+      } else {
+        this.props.history.push("/login");
+      }
+    }, 500);
   };
 
   render() {

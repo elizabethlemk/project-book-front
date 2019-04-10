@@ -1,6 +1,6 @@
 @import url("https://fonts.googleapis.com/css?family=Arbutus+Slab|Courgette|Homemade+Apple|Spectral+SC");
 
-.quote {
+#quote {
   margin-top: 35vh !important;
   background-color: pink !important;
   font-family: "Homemade Apple", cursive !important;
@@ -8,7 +8,7 @@
   width: 100vw;
 }
 
-.moodboard-title {
+#moodboard-title {
   font-family: "Homemade Apple", cursive !important;
   font-size: 3rem !important;
   margin-top: -2.5vh !important;
@@ -20,7 +20,9 @@
 }
 
 .ui.toggle.checkbox input:focus:checked ~ .box:before,
-.ui.toggle.checkbox input:focus:checked ~ label:before {
+.ui.toggle.checkbox input:focus:checked ~ label:before,
+.ui.toggle.checkbox input:checked ~ .box:before,
+.ui.toggle.checkbox input:checked ~ label:before {
   background-color: #b5cc18 !important;
 }
 
@@ -39,8 +41,9 @@
 
 #username {
   font-family: "Homemade Apple", cursive !important;
-  font-size: 3rem !important;
+  font-size: 2.5rem !important;
   color: pink !important;
+  overflow: inherit !important;
 }
 
 #middle {
