@@ -7,9 +7,10 @@
   background-size: cover;
 }
 
-.profile-img {
-  height: 500px;
-  width: auto;
+#user-image {
+  overflow: hidden !important;
+  height: 500px !important;
+  width: auto !important;
 }
 
 .ui button {

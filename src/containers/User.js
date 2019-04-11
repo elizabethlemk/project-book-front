@@ -31,7 +31,7 @@ class User extends React.Component {
           <Grid columns={3} centered>
             <Grid.Column>
               <Card>
-                <Image src={image.image_url} />
+                <Image id="user-image" src={image} />
                 <Card.Content>
                   <Card.Header textAlign="center" id="username">
                     {username}

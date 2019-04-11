@@ -149,9 +149,7 @@ export const addColor = projectId => {
         accepts: "application/json"
       },
       body: JSON.stringify({ color_hex: "white", project_id: projectId })
-    })
-      .then(resp => resp.json())
-      .then(json => console.log);
+    });
   };
 };
 
@@ -165,8 +163,6 @@ export const updateColor = (id, color) => {
         accepts: "application/json"
       },
       body: JSON.stringify({ color_hex: color })
-    })
-      .then(resp => resp.json())
-      .then(json => console.log);
+    });
   };
 };

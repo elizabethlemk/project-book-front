@@ -1,4 +1,5 @@
 import React from "react";
+import ImageCard from "./ImageCard";
 import { Button, Container, Form, Grid, Image, Table } from "semantic-ui-react";
 import { connect } from "react-redux";
 import { addBoardImage, loadProject } from "../actions/projectAction";
@@ -67,9 +68,7 @@ class MoodBoard extends React.Component {
         </Table>
         <Grid columns={3}>
           {this.state.allImages.map((image, index) => (
-            <Grid.Column key={index}>
-              <Image src={image} />
-            </Grid.Column>
+            <ImageCard image={image} index={index} />
           ))}
         </Grid>
       </Container>

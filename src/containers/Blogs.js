@@ -1,5 +1,6 @@
 import React from "react";
 import BlogForm from "../blog-files/BlogForm";
+import { UserBlogCard } from "../blog-files/BlogCard";
 import { Button, Container, Item } from "semantic-ui-react";
 import { connect } from "react-redux";
 import { loadBlogs } from "../actions/blogAction";
@@ -52,13 +53,7 @@ class Blogs extends React.Component {
         <Item.Group divided style={{ marginTop: "6vh" }}>
           {this.state.blog_posts.length > 0
             ? this.state.blog_posts.map(blog => (
-                <Item key={blog.id}>
-                  <Item.Content>
-                    <Item.Header>{blog.title}</Item.Header>
-                    <Item.Meta>Posted on: {blog.created_at}</Item.Meta>
-                    <Item.Description>{blog.content}</Item.Description>
-                  </Item.Content>
-                </Item>
+                <UserBlogCard key={blog.id} blog={blog} />
               ))
             : null}
         </Item.Group>

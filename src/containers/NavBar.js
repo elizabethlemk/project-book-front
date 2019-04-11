@@ -87,7 +87,6 @@ class NavBar extends React.Component {
           active={activeItem === "home"}
           onClick={this.handleItemClick}
         />
-
         {localStorage.token ? (
           <Menu.Menu>
             <Menu.Item
@@ -106,17 +105,16 @@ class NavBar extends React.Component {
               active={activeItem === "blogs"}
               onClick={this.handleItemClick}
             />
-            <Menu.Item
-              as={NavLink}
-              exact
-              to="/browse"
-              name="browse"
-              active={activeItem === "browse"}
-              onClick={this.handleItemClick}
-            />{" "}
           </Menu.Menu>
         ) : null}
-
+        <Menu.Item
+          as={NavLink}
+          exact
+          to="/browse"
+          name="browse"
+          active={activeItem === "browse"}
+          onClick={this.handleItemClick}
+        />{" "}
         <Menu.Menu position="right">
           <Header as="h1" id="middle">
             {" "}
