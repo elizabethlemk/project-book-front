@@ -138,3 +138,35 @@ export const changeCompleted = (toggleInfo, projectId) => {
       .then(json => console.log);
   };
 };
+
+export const addColor = projectId => {
+  return dispatch => {
+    return fetch(`http://localhost:4000/api/v1/colors`, {
+      method: "POST",
+      headers: {
+        Authorization: `Bearer ${localStorage.token}`,
+        "content-type": "application/json",
+        accepts: "application/json"
+      },
+      body: JSON.stringify({ color_hex: "white", project_id: projectId })
+    })
+      .then(resp => resp.json())
+      .then(json => console.log);
+  };
+};
+
+export const updateColor = (id, color) => {
+  return dispatch => {
+    return fetch(`http://localhost:4000/api/v1/colors/${id}`, {
+      method: "PATCH",
+      headers: {
+        Authorization: `Bearer ${localStorage.token}`,
+        "content-type": "application/json",
+        accepts: "application/json"
+      },
+      body: JSON.stringify({ color_hex: color })
+    })
+      .then(resp => resp.json())
+      .then(json => console.log);
+  };
+};

@@ -9,6 +9,7 @@
     "react": "^16.8.6",
     "react-activestorage-provider": "^0.8.0",
     "react-beautiful-dnd": "^11.0.0-beta",
+    "react-color": "^2.17.0",
     "react-dom": "^16.8.6",
     "react-redux": "^6.0.1",
     "react-router-dom": "^5.0.0",

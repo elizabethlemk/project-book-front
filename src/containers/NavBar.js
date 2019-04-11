@@ -109,9 +109,9 @@ class NavBar extends React.Component {
             <Menu.Item
               as={NavLink}
               exact
-              to="/forum"
-              name="forum"
-              active={activeItem === "forum"}
+              to="/browse"
+              name="browse"
+              active={activeItem === "browse"}
               onClick={this.handleItemClick}
             />{" "}
           </Menu.Menu>

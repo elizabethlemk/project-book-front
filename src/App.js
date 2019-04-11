@@ -8,7 +8,7 @@ import { checkToken } from "./actions/userAction";
 import { loadBlogs } from "./actions/blogAction";
 
 import Home from "./containers/Home";
-import Forum from "./containers/Forum";
+import Browse from "./containers/Browse";
 import User from "./containers/User";
 import Projects from "./containers/Projects";
 import NavBar from "./containers/NavBar";
@@ -21,7 +21,6 @@ import Signup from "./components/Signup";
 
 class App extends React.Component {
   componentDidMount = () => {
-    this.props.history.push("/home");
     if (localStorage.token) {
       this.props.checkToken();
     } else {
@@ -37,7 +36,7 @@ class App extends React.Component {
           <Route exact path="/home" component={Home} />
           <Route exact path="/projects" component={Projects} />
           <Route exact path="/blogs" component={Blogs} />
-          <Route exact path="/forum" component={Forum} />
+          <Route exact path="/browse" component={Browse} />
           <Route exact path="/user" component={User} />
           <Route exact path="/login" component={Login} />
           <Route exact path="/signup" component={Signup} />

@@ -11,13 +11,18 @@ class Blogs extends React.Component {
   };
 
   componentDidMount = () => {
-    this.setState({ blog_posts: this.props.blogs });
+    this.props.loadBlogs(this.props.user.id);
+    setTimeout(() => {
+      this.setState({ blog_posts: this.props.blogs });
+    }, 300);
   };
 
   componentDidUpdate = prevProps => {
-    if (this.props.blogs !== prevProps.blogs) {
+    if (this.props.user.blog_posts !== prevProps.user.blog_posts) {
       this.props.loadBlogs(this.props.user.id);
-      this.setState({ blog_posts: this.props.blogs });
+      setTimeout(() => {
+        this.setState({ blog_posts: this.props.blogs });
+      }, 300);
     }
   };
 
@@ -26,6 +31,7 @@ class Blogs extends React.Component {
   };
 
   render() {
+    console.log(this.props);
     return (
       <Container style={{ marginTop: "4vh" }}>
         {this.state.active ? (

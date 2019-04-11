@@ -1,8 +1,36 @@
 import React from "react";
-import { Button, Container, Grid, Icon, Table } from "semantic-ui-react";
+import Swatch from "./Swatch";
+import { Button, Container, Grid, Table } from "semantic-ui-react";
 import { connect } from "react-redux";
+import { addColor, loadProject } from "../actions/projectAction";
 
 class ColorPalette extends React.Component {
+  state = {
+    colors: []
+  };
+
+  componentDidMount = () => {
+    setTimeout(() => {
+      this.setState({ colors: this.props.project.colors });
+    }, 300);
+  };
+
+  componentDidUpdate = prevProps => {
+    if (this.props.project !== prevProps.project) {
+      this.setState({ colors: this.props.project.colors });
+    }
+  };
+
+  handleNewSwatch = () => {
+    this.props.addColor(this.props.project.id);
+    setTimeout(() => {
+      this.props.loadProject(this.props.project.id);
+    }, 200);
+    setTimeout(() => {
+      this.setState({ colors: this.props.project.colors });
+    }, 300);
+  };
+
   render() {
     return (
       <Container>
@@ -14,49 +42,28 @@ class ColorPalette extends React.Component {
           </Table.Header>
         </Table>
         <Grid columns={9} textAlign="center">
-          <Grid.Column>
-            {" "}
-            <Icon name="square full" size="huge" color="red" />
+          {this.state.colors.length > 0
+            ? this.state.colors.map(color => (
+                <Swatch key={color.id} color={color} />
+              ))
+            : null}
+
+          <Grid.Column verticalAlign="middle">
+            <Button circular icon="plus" onClick={this.handleNewSwatch} />
           </Grid.Column>
-          <Grid.Column>
-            {" "}
-            <Icon name="square full" size="huge" color="pink" />
-          </Grid.Column>
-          <Grid.Column>
-            {" "}
-            <Icon name="square full" size="huge" color="orange" />
-          </Grid.Column>
-          <Grid.Column>
-            {" "}
-            <Icon name="square full" size="huge" color="green" />
-          </Grid.Column>
-          <Grid.Column>
-            {" "}
-            <Icon name="square full" size="huge" color="blue" />
-          </Grid.Column>
-          <Grid.Column>
-            {" "}
-            <Icon name="square full" size="huge" color="purple" />
-          </Grid.Column>
-          <Grid.Column>
-            {" "}
-            <Icon name="square full" size="huge" color="yellow" />
-          </Grid.Column>
-          <Grid.Column>
-            {" "}
-            <Icon name="square full" size="huge" color="teal" />
-          </Grid.Column>
-          <Grid.Column>
-            {" "}
-            <Icon name="square full" size="huge" color="red" />
-          </Grid.Column>
-          <Grid.Row>
-            <Button circular icon="plus" />
-          </Grid.Row>
         </Grid>
       </Container>
     );
   }
 }
 
-export default connect()(ColorPalette);
+const mapStateToProps = state => {
+  return {
+    project: state.projectReducer.project
+  };
+};
+
+export default connect(
+  mapStateToProps,
+  { addColor, loadProject }
+)(ColorPalette);
