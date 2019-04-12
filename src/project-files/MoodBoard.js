@@ -1,6 +1,8 @@
 import React from "react";
 import ImageCard from "./ImageCard";
 import { Button, Container, Form, Grid, Table } from "semantic-ui-react";
+import Loaders from "../components/Loaders";
+
 import { connect } from "react-redux";
 import { addBoardImage, loadProject } from "../actions/projectAction";
 
@@ -27,6 +29,7 @@ class MoodBoard extends React.Component {
   };
 
   render() {
+    console.log(this.props);
     return (
       <Container id="moodboard-container">
         <Table textAlign="center">

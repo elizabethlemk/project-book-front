@@ -1,49 +1,55 @@
 const initialState = {
-  project: { colors: [] },
+  project: {},
+  colors: [],
   comments: [],
   links: [],
-  images: [],
-  pendingRequest: false,
-  error: null
+  images: []
 };
 
 const projectReducer = (state = initialState, action) => {
   switch (action.type) {
-    case "PROJECT_PENDING":
-      return { ...state, project: {}, pendingRequest: true };
     case "CREATE_PROJECT":
-      return { ...state, pendingRequest: false, error: null };
+      return {
+        ...state,
+        project: action.payload.project,
+        colors: action.payload.project.colors,
+        links: action.payload.project.links,
+        images: action.payload.project.images,
+        comments: action.payload.project.notes
+      };
     case "UPDATE_PROJECT":
       return {
         ...state,
         project: action.payload.project,
-        pendingRequest: false,
-        error: null
+        colors: action.payload.project.colors,
+        links: action.payload.project.links,
+        images: action.payload.project.images,
+        comments: action.payload.project.notes
       };
     case "GET_PROJECT":
-      console.log(action.payload);
       return {
         ...state,
         project: action.payload.project,
+        colors: action.payload.project.colors,
         links: action.payload.project.links,
         images: action.payload.project.images,
-        comments: action.payload.project.notes,
-        pendingRequest: false,
-        error: null
+        comments: action.payload.project.notes
       };
     case "CREATE_COMMENT":
       return {
         ...state,
-        comments: [...state.comments, action.payload.note],
-        pendingRequest: false,
-        error: null
+        comments: [...state.comments, action.payload.note]
       };
-    case "COMMENT_PENDING":
-      return { ...state, pendingRequest: true };
     case "CREATE_REF":
-      return { ...state, links: [...state.links, action.payload.link] };
+      return {
+        ...state,
+        links: [...state.links, action.payload.link]
+      };
     case "CREATE_IMAGE":
-      return state;
+      return {
+        ...state,
+        images: [...state.images, action.payload.project.images]
+      };
     default:
       return state;
   }

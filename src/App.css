@@ -12,6 +12,12 @@
   color: white !important;
 }
 
+#user-form {
+  max-width: 800px;
+  top: 20vh;
+  left: 30vw;
+}
+
 #user-container {
   margin-top: 3rem !important;
 }

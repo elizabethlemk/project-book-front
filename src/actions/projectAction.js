@@ -14,20 +14,8 @@ export const getProject = projectObj => {
   return { type: "GET_PROJECT", payload: projectObj };
 };
 
-export const pendingProject = () => {
-  return { type: "PROJECT_PENDING" };
-};
-
 export const createComment = commentObj => {
   return { type: "CREATE_COMMENT", payload: commentObj };
-};
-
-// export const deleteComment = () => {
-//   return { type: "DELETE_COMMENT" };
-// };
-
-export const pendingComment = () => {
-  return { type: "COMMENT_PENDING" };
 };
 
 export const createRef = linkObj => {
@@ -38,13 +26,14 @@ export const createBoardImage = images => {
   return { type: "CREATE_IMAGE", payload: images };
 };
 
+export const removeComment = () => {};
+
 //---------------------//
 // T H U N K
 //---------------------//
 
 export const addProject = formData => {
   return dispatch => {
-    dispatch(pendingProject());
     return fetch("http://localhost:4000/api/v1/projects", {
       method: "POST",
       headers: {
@@ -78,7 +67,6 @@ export const loadProject = projectId => {
 
 export const addComment = formData => {
   return dispatch => {
-    dispatch(pendingComment());
     return fetch("http://localhost:4000/api/v1/notes", {
       method: "POST",
       headers: {
@@ -137,9 +125,7 @@ export const changeCompleted = (toggleInfo, projectId) => {
         accepts: "application/json"
       },
       body: JSON.stringify({ completed: toggleInfo })
-    })
-      .then(resp => resp.json())
-      .then(json => console.log);
+    });
   };
 };
 

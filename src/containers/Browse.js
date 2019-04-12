@@ -2,6 +2,7 @@ import React from "react";
 import { Container, Grid, Header } from "semantic-ui-react";
 import UserCard from "../components/UserCard";
 import { BlogCard } from "../blog-files/BlogCard";
+import Loaders from "../components/Loaders";
 
 class Forum extends React.Component {
   state = {
@@ -29,18 +30,22 @@ class Forum extends React.Component {
             <Grid.Row>
               <Header>Users</Header>
             </Grid.Row>
-            {allUsers.length > 0
-              ? allUsers.map(user => <UserCard key={user.id} user={user} />)
-              : "No Users"}
+            {allUsers.length > 0 ? (
+              allUsers.map(user => <UserCard key={user.id} user={user} />)
+            ) : (
+              <Loaders />
+            )}
           </Grid>
 
           <Grid columns={2} centered>
             <Grid.Row>
               <Header>Blogs</Header>
             </Grid.Row>
-            {allBlogs.length > 0
-              ? allBlogs.map(blog => <BlogCard key={blog.id} blog={blog} />)
-              : "No Blogs"}
+            {allBlogs.length > 0 ? (
+              allBlogs.map(blog => <BlogCard key={blog.id} blog={blog} />)
+            ) : (
+              <Loaders />
+            )}
           </Grid>
         </Grid>
       </Container>

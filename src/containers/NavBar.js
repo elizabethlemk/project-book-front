@@ -1,6 +1,6 @@
 import React from "react";
 import { NavLink } from "react-router-dom";
-import { Button, Dropdown, Header, Input, Menu } from "semantic-ui-react";
+import { Button, Dropdown, Header, Icon, Input, Menu } from "semantic-ui-react";
 
 import { connect } from "react-redux";
 import { logOut } from "../actions/userAction";
@@ -33,7 +33,7 @@ class NavBar extends React.Component {
           </Menu.Item>
           <Dropdown
             item
-            text={username !== "undefined" ? username : null}
+            text={username ? username : <Icon loading name="spinner" />}
             active={(activeItem === "user").toString()}
             onClick={this.handleItemClick}
           >

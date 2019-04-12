@@ -1,13 +1,17 @@
-import React from 'react'
+import React from "react";
+import { connect } from "react-redux";
 
 class Settings extends React.Component {
-
-
-  render(){
-    return(
-      <div>Setting Page</div>
-    )
+  render() {
+    console.log(this.props);
+    return <div>Setting Page</div>;
   }
 }
 
-export default Settings
+const mapStateToProps = state => {
+  return {
+    user: state.userReducer.user
+  };
+};
+
+export default connect(mapStateToProps)(Settings);

@@ -1,7 +1,7 @@
 import React from "react";
 import BlogForm from "../blog-files/BlogForm";
 import { UserBlogCard } from "../blog-files/BlogCard";
-import { Button, Container, Item } from "semantic-ui-react";
+import { Button, Container, Item, Placeholder } from "semantic-ui-react";
 import { connect } from "react-redux";
 import { loadBlogs } from "../actions/blogAction";
 
@@ -10,12 +10,15 @@ class Blogs extends React.Component {
     active: false
   };
 
+  componentDidMount = () => {
+    this.props.loadBlogs(this.props.user.id);
+  };
+
   handleClick = () => {
     this.setState({ active: !this.state.active });
   };
 
   render() {
-    console.log(this.props);
     return (
       <Container style={{ marginTop: "4vh" }}>
         {this.state.active ? (
@@ -34,11 +37,23 @@ class Blogs extends React.Component {
 
         {this.state.active ? <BlogForm /> : null}
         <Item.Group divided style={{ marginTop: "6vh" }}>
-          {this.props.blogs.length > 0
-            ? this.props.blogs.map(blog => (
-                <UserBlogCard key={blog.id} blog={blog} />
-              ))
-            : null}
+          {this.props.blogs.length > 0 ? (
+            this.props.blogs.map(blog => (
+              <UserBlogCard key={blog.id} blog={blog} />
+            ))
+          ) : (
+            <Placeholder fluid>
+              <Placeholder.Header image>
+                <Placeholder.Line />
+                <Placeholder.Line />
+              </Placeholder.Header>
+              <Placeholder.Paragraph>
+                <Placeholder.Line />
+                <Placeholder.Line />
+                <Placeholder.Line />
+              </Placeholder.Paragraph>
+            </Placeholder>
+          )}
         </Item.Group>
       </Container>
     );
@@ -48,7 +63,7 @@ class Blogs extends React.Component {
 const mapStateToProps = state => {
   return {
     user: state.userReducer.user,
-    blogs: state.userReducer.user.blog_posts
+    blogs: state.blogReducer.blogs
   };
 };
 

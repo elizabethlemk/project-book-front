@@ -18,6 +18,7 @@ const userReducer = (state = initialState, action) => {
         pendingRequest: false,
         error: null
       };
+
     case "SET_USER":
       return {
         ...state,

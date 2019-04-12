@@ -1,5 +1,5 @@
 import React from "react";
-import { Form, Segment } from "semantic-ui-react";
+import { Container, Form, Header, Segment } from "semantic-ui-react";
 
 import { connect } from "react-redux";
 import { getAuth } from "../actions/userAction";
@@ -31,27 +31,30 @@ class Login extends React.Component {
   render() {
     const { username, password } = this.state;
     return (
-      <Segment textAlign="center">
-        <Form onSubmit={this.handleSubmit}>
-          <Form.Input
-            label="Username"
-            placeholder="username"
-            name="username"
-            value={username}
-            onChange={this.handleChange}
-          />
+      <Container id="splash">
+        <Segment textAlign="center" id="user-form">
+          <Header id="username">Log into your account</Header>
+          <Form onSubmit={this.handleSubmit}>
+            <Form.Input
+              label="Username"
+              placeholder="username"
+              name="username"
+              value={username}
+              onChange={this.handleChange}
+            />
 
-          <Form.Input
-            label="Password"
-            type="password"
-            placeholder="password"
-            name="password"
-            value={password}
-            onChange={this.handleChange}
-          />
-          <Form.Button>Submit</Form.Button>
-        </Form>
-      </Segment>
+            <Form.Input
+              label="Password"
+              type="password"
+              placeholder="password"
+              name="password"
+              value={password}
+              onChange={this.handleChange}
+            />
+            <Form.Button>Submit</Form.Button>
+          </Form>
+        </Segment>
+      </Container>
     );
   }
 }

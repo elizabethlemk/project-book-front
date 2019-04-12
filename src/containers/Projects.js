@@ -1,5 +1,6 @@
 import React from "react";
 import { Button, Icon, Menu, Segment } from "semantic-ui-react";
+import Loaders from "../components/Loaders";
 import { connect } from "react-redux";
 import { loadProject } from "../actions/projectAction";
 
@@ -10,6 +11,28 @@ class Projects extends React.Component {
   state = {
     showForm: false,
     project_id: null
+  };
+
+  renderProjects = () => {
+    if (this.props.projects.length > 0) {
+      const { project_id } = this.state;
+      return this.props.projects.map(project => (
+        <Menu.Item
+          key={project.id}
+          id={project.id}
+          active={project_id === project.id}
+          onClick={this.handleClick}
+        >
+          {project.title}
+        </Menu.Item>
+      ));
+    } else {
+      return (
+        <Menu.Item>
+          <Icon loading name="spinner" />
+        </Menu.Item>
+      );
+    }
   };
 
   handleShow = () => {
@@ -25,24 +48,12 @@ class Projects extends React.Component {
 
   render() {
     console.log(this.props);
-    const { project_id } = this.state;
     return (
       <div>
         <Menu attached="top" tabular>
           <Menu.Item id="project-header">Current Projects </Menu.Item>
+          {this.renderProjects()}
 
-          {this.props.projects.length > 0
-            ? this.props.projects.map(project => (
-                <Menu.Item
-                  key={project.id}
-                  id={project.id}
-                  active={project_id === project.id}
-                  onClick={this.handleClick}
-                >
-                  {project.title}
-                </Menu.Item>
-              ))
-            : null}
           {this.state.showForm ? <CreateProject /> : null}
           <Menu.Item>
             <Button animated onClick={this.handleShow}>
@@ -62,7 +73,11 @@ class Projects extends React.Component {
           </Menu.Item>
         </Menu>
         <Segment attached="bottom">
-          {this.state.project_id ? <ProjectsForm /> : null}
+          {this.state.project_id ? (
+            <ProjectsForm />
+          ) : (
+            "Let's work on a project!"
+          )}
         </Segment>
       </div>
     );

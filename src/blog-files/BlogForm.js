@@ -19,7 +19,7 @@ class BlogForm extends React.Component {
   handleSubmit = () => {
     this.props.addBlog(this.state);
     this.setState({ title: "", content: "" });
-    this.props.loadBlogs(this.state.user_id);
+    this.props.loadBlogs(this.props.user.id);
   };
 
   render() {

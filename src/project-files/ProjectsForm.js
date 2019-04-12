@@ -1,11 +1,13 @@
 import React from "react";
-import MoodBoard from "./MoodBoard";
-import Comments from "./Comments";
-import ColorPalette from "./ColorPalette";
-import References from "./References";
 import { Checkbox, Grid, Header } from "semantic-ui-react";
+import Loaders from "../components/Loaders";
 import { connect } from "react-redux";
 import { changeCompleted } from "../actions/projectAction";
+
+const MoodBoard = React.lazy(() => import("./MoodBoard"));
+const Comments = React.lazy(() => import("./Comments"));
+const ColorPalette = React.lazy(() => import("./ColorPalette"));
+const References = React.lazy(() => import("./References"));
 
 class ProjectsForm extends React.Component {
   handleToggle = event => {
@@ -32,14 +34,20 @@ class ProjectsForm extends React.Component {
           <Header id="moodboard-title">{this.props.project.title} </Header>
 
           <Grid.Column width={3}>
-            <Comments />
+            <React.Suspense fallback={<Loaders />}>
+              <Comments />
+            </React.Suspense>
           </Grid.Column>
           <Grid.Column width={9}>
-            <ColorPalette />
-            <MoodBoard />
+            <React.Suspense fallback={<Loaders />}>
+              <ColorPalette />
+              <MoodBoard />
+            </React.Suspense>
           </Grid.Column>
           <Grid.Column width={4}>
-            <References />
+            <React.Suspense fallback={<Loaders />}>
+              <References />
+            </React.Suspense>
           </Grid.Column>
         </Grid.Row>
       </Grid>

@@ -1,6 +1,7 @@
 import React from "react";
 import Swatch from "./Swatch";
 import { Button, Container, Grid, Table } from "semantic-ui-react";
+import Loaders from "../components/Loaders";
 import { connect } from "react-redux";
 import { addColor, loadProject } from "../actions/projectAction";
 
@@ -11,6 +12,7 @@ class ColorPalette extends React.Component {
   };
 
   render() {
+    console.log(this.props);
     return (
       <Container>
         <Table textAlign="center">
@@ -21,11 +23,9 @@ class ColorPalette extends React.Component {
           </Table.Header>
         </Table>
         <Grid columns={9} textAlign="center">
-          {this.props.project.colors.length > 0
-            ? this.props.project.colors.map(color => (
-                <Swatch key={color.id} color={color} />
-              ))
-            : null}
+          {this.props.colors.map(color => (
+            <Swatch key={color.id} color={color} />
+          ))}
 
           <Grid.Column verticalAlign="middle">
             <Button circular icon="plus" onClick={this.handleNewSwatch} />
@@ -38,7 +38,8 @@ class ColorPalette extends React.Component {
 
 const mapStateToProps = state => {
   return {
-    project: state.projectReducer.project
+    project: state.projectReducer.project,
+    colors: state.projectReducer.colors
   };
 };
 
