@@ -1,25 +1,12 @@
 import React from "react";
 import ImageCard from "./ImageCard";
-import { Button, Container, Form, Grid, Image, Table } from "semantic-ui-react";
+import { Button, Container, Form, Grid, Table } from "semantic-ui-react";
 import { connect } from "react-redux";
 import { addBoardImage, loadProject } from "../actions/projectAction";
 
 class MoodBoard extends React.Component {
   state = {
-    image: [],
-    allImages: []
-  };
-
-  componentDidMount = () => {
-    setTimeout(() => {
-      this.setState({ allImages: this.props.project.images.image_urls });
-    }, 500);
-  };
-
-  componentDidUpdate = prevProps => {
-    if (this.props.project !== prevProps.project) {
-      this.setState({ allImages: this.props.project.images.image_urls });
-    }
+    image: []
   };
 
   handleFile = event => {
@@ -40,7 +27,6 @@ class MoodBoard extends React.Component {
   };
 
   render() {
-    // console.log(this.state, this.props);
     return (
       <Container id="moodboard-container">
         <Table textAlign="center">
@@ -67,8 +53,8 @@ class MoodBoard extends React.Component {
           </Table.Body>
         </Table>
         <Grid columns={3}>
-          {this.state.allImages.map((image, index) => (
-            <ImageCard image={image} index={index} />
+          {this.props.images.map((image, index) => (
+            <ImageCard image={image} index={index} key={index} />
           ))}
         </Grid>
       </Container>

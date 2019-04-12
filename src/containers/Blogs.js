@@ -7,24 +7,7 @@ import { loadBlogs } from "../actions/blogAction";
 
 class Blogs extends React.Component {
   state = {
-    blog_posts: [],
     active: false
-  };
-
-  componentDidMount = () => {
-    this.props.loadBlogs(this.props.user.id);
-    setTimeout(() => {
-      this.setState({ blog_posts: this.props.blogs });
-    }, 300);
-  };
-
-  componentDidUpdate = prevProps => {
-    if (this.props.user.blog_posts !== prevProps.user.blog_posts) {
-      this.props.loadBlogs(this.props.user.id);
-      setTimeout(() => {
-        this.setState({ blog_posts: this.props.blogs });
-      }, 300);
-    }
   };
 
   handleClick = () => {
@@ -51,8 +34,8 @@ class Blogs extends React.Component {
 
         {this.state.active ? <BlogForm /> : null}
         <Item.Group divided style={{ marginTop: "6vh" }}>
-          {this.state.blog_posts.length > 0
-            ? this.state.blog_posts.map(blog => (
+          {this.props.blogs.length > 0
+            ? this.props.blogs.map(blog => (
                 <UserBlogCard key={blog.id} blog={blog} />
               ))
             : null}
@@ -63,7 +46,10 @@ class Blogs extends React.Component {
 }
 
 const mapStateToProps = state => {
-  return { user: state.userReducer.user, blogs: state.blogReducer.blogs };
+  return {
+    user: state.userReducer.user,
+    blogs: state.userReducer.user.blog_posts
+  };
 };
 
 export default connect(

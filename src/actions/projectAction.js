@@ -22,6 +22,10 @@ export const createComment = commentObj => {
   return { type: "CREATE_COMMENT", payload: commentObj };
 };
 
+// export const deleteComment = () => {
+//   return { type: "DELETE_COMMENT" };
+// };
+
 export const pendingComment = () => {
   return { type: "COMMENT_PENDING" };
 };
@@ -163,6 +167,17 @@ export const updateColor = (id, color) => {
         accepts: "application/json"
       },
       body: JSON.stringify({ color_hex: color })
+    });
+  };
+};
+
+export const removeNote = id => {
+  return dispatch => {
+    return fetch(`http://localhost:4000/api/v1/notes/${id}`, {
+      method: "DELETE",
+      headers: {
+        Authorization: `Bearer ${localStorage.token}`
+      }
     });
   };
 };

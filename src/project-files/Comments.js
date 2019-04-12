@@ -1,8 +1,9 @@
 import React from "react";
 import { Button, Form, Icon, Ref, Table } from "semantic-ui-react";
-import { DragDropContext, Droppable, Draggable } from "react-beautiful-dnd";
+import { DragDropContext, Droppable } from "react-beautiful-dnd";
+import Note from "./Note";
 import { connect } from "react-redux";
-import { addComment } from "../actions/projectAction";
+import { addComment, removeNote } from "../actions/projectAction";
 
 class Comments extends React.Component {
   state = {
@@ -58,7 +59,14 @@ class Comments extends React.Component {
     this.setState({ comment: "", active: false });
   };
 
+  removeItem = (index, id) => {
+    const newArr = this.state.notes.slice(1, index);
+    this.props.removeNote(id);
+    this.setState({ notes: newArr });
+  };
+
   render() {
+    console.log(this.state.notes);
     return (
       <DragDropContext onDragEnd={this.onDragEnd}>
         <Table textAlign="center">
@@ -79,22 +87,12 @@ class Comments extends React.Component {
                 <Table.Body {...provided.droppableProps}>
                   {this.state.notes.length > 0
                     ? this.state.notes.map((note, index) => (
-                        <Draggable
-                          draggableId={note.id}
+                        <Note
                           index={index}
-                          key={note.id}
-                        >
-                          {(provided, snapshot) => (
-                            <Ref innerRef={provided.innerRef}>
-                              <Table.Row
-                                {...provided.draggableProps}
-                                {...provided.dragHandleProps}
-                              >
-                                <Table.Cell>{note.comment}</Table.Cell>
-                              </Table.Row>
-                            </Ref>
-                          )}
-                        </Draggable>
+                          note={note}
+                          key={index}
+                          removeItem={this.removeItem}
+                        />
                       ))
                     : null}
                   {provided.placeholder}
@@ -151,5 +149,5 @@ const mapStateToProps = state => {
 
 export default connect(
   mapStateToProps,
-  { addComment }
+  { addComment, removeNote }
 )(Comments);

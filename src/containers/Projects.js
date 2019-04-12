@@ -9,28 +9,7 @@ import ProjectsForm from "../project-files/ProjectsForm";
 class Projects extends React.Component {
   state = {
     showForm: false,
-    project_id: null,
-    allProjects: []
-  };
-
-  componentDidMount = () => {
-    this.setState({ allProjects: this.props.user.projects }, () => {
-      if (
-        this.state.allProjects !== undefined &&
-        this.state.allProjects.length > 0
-      ) {
-        this.props.loadProject(this.state.allProjects[0].id);
-        this.setState({
-          project_id: this.state.allProjects[0].id
-        });
-      }
-    });
-  };
-
-  componentDidUpdate = prevProps => {
-    if (this.props.user.projects !== prevProps.user.projects) {
-      this.setState({ allProjects: this.props.user.projects });
-    }
+    project_id: null
   };
 
   handleShow = () => {
@@ -45,14 +24,15 @@ class Projects extends React.Component {
   };
 
   render() {
-    const { allProjects, project_id } = this.state;
+    console.log(this.props);
+    const { project_id } = this.state;
     return (
       <div>
         <Menu attached="top" tabular>
           <Menu.Item id="project-header">Current Projects </Menu.Item>
 
-          {allProjects !== undefined && allProjects.length > 0
-            ? allProjects.map(project => (
+          {this.props.projects.length > 0
+            ? this.props.projects.map(project => (
                 <Menu.Item
                   key={project.id}
                   id={project.id}
@@ -90,7 +70,10 @@ class Projects extends React.Component {
 }
 
 const mapStateToProps = state => {
-  return { user: state.userReducer.user };
+  return {
+    user: state.userReducer.user,
+    projects: state.userReducer.user.projects
+  };
 };
 
 export default connect(

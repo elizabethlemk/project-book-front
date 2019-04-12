@@ -1,5 +1,5 @@
 const initialState = {
-  project: {},
+  project: { colors: [] },
   comments: [],
   links: [],
   images: [],
@@ -26,7 +26,7 @@ const projectReducer = (state = initialState, action) => {
         ...state,
         project: action.payload.project,
         links: action.payload.project.links,
-        images: action.payload.project.images.image_urls,
+        images: action.payload.project.images,
         comments: action.payload.project.notes,
         pendingRequest: false,
         error: null

@@ -12,7 +12,7 @@ const ImageCard = ({ image, index }) => {
       closeIcon
     >
       <Modal.Content>
-        <Image src={image} />
+        <Image src={image} fluid />
       </Modal.Content>
     </Modal>
   );

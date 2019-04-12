@@ -1,11 +1,15 @@
 const initialState = {
-  user: {}
+  user: { projects: [], blog_posts: [] }
 };
 
 const userReducer = (state = initialState, action) => {
   switch (action.type) {
     case "LOG_IN_PENDING":
-      return { ...state, user: {}, pendingRequest: true };
+      return {
+        ...state,
+        user: { projects: [], blog_posts: [] },
+        pendingRequest: true
+      };
     case "CREATE_USER":
       localStorage.setItem("token", action.payload.jwt);
       return {
