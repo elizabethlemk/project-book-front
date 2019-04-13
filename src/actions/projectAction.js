@@ -125,7 +125,9 @@ export const changeCompleted = (toggleInfo, projectId) => {
         accepts: "application/json"
       },
       body: JSON.stringify({ completed: toggleInfo })
-    });
+    })
+      .then(resp => resp.json())
+      .then(json => dispatch(getProject(json)));
   };
 };
 

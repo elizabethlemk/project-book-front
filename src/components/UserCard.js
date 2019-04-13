@@ -1,7 +1,8 @@
 import React from "react";
-import { Card, Grid } from "semantic-ui-react";
+import { Card, Grid, Segment } from "semantic-ui-react";
+import { UserBlogCard } from "../blog-files/BlogCard";
 
-const UserCard = ({ user }) => {
+export const UserCard = ({ user }) => {
   return (
     <Grid.Column>
       <Card
@@ -13,4 +14,12 @@ const UserCard = ({ user }) => {
   );
 };
 
-export default UserCard;
+export const UserBlogs = ({ user }) => {
+  return (
+    <Segment>
+      {user.blogs.map(blog => (
+        <UserBlogCard blog={blog} />
+      ))}
+    </Segment>
+  );
+};

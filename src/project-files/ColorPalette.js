@@ -1,7 +1,6 @@
 import React from "react";
 import Swatch from "./Swatch";
 import { Button, Container, Grid, Table } from "semantic-ui-react";
-import Loaders from "../components/Loaders";
 import { connect } from "react-redux";
 import { addColor, loadProject } from "../actions/projectAction";
 

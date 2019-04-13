@@ -1,13 +1,13 @@
 import React from "react";
 import { Button, Icon, Menu, Segment } from "semantic-ui-react";
-import Loaders from "../components/Loaders";
 import { connect } from "react-redux";
 import { loadProject } from "../actions/projectAction";
 
+import Error from "../components/Error";
 import CreateProject from "../project-files/CreateProject";
 import ProjectsForm from "../project-files/ProjectsForm";
 
-class Projects extends React.Component {
+class Projects extends React.PureComponent {
   state = {
     showForm: false,
     project_id: null
@@ -16,6 +16,13 @@ class Projects extends React.Component {
   renderProjects = () => {
     if (this.props.projects.length > 0) {
       const { project_id } = this.state;
+
+      if (!project_id) {
+        const selected = this.props.user.projects[0].id;
+        this.props.loadProject(selected);
+        this.setState({ project_id: selected });
+      }
+
       return this.props.projects.map(project => (
         <Menu.Item
           key={project.id}
@@ -47,7 +54,7 @@ class Projects extends React.Component {
   };
 
   render() {
-    console.log(this.props);
+    console.log(this.props.projects);
     return (
       <div>
         <Menu attached="top" tabular>
@@ -73,11 +80,7 @@ class Projects extends React.Component {
           </Menu.Item>
         </Menu>
         <Segment attached="bottom">
-          {this.state.project_id ? (
-            <ProjectsForm />
-          ) : (
-            "Let's work on a project!"
-          )}
+          {this.state.project_id ? <ProjectsForm /> : <Error />}
         </Segment>
       </div>
     );

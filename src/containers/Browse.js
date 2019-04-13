@@ -1,6 +1,6 @@
 import React from "react";
 import { Container, Grid, Header } from "semantic-ui-react";
-import UserCard from "../components/UserCard";
+import { UserCard } from "../components/UserCard";
 import { BlogCard } from "../blog-files/BlogCard";
 import Loaders from "../components/Loaders";
 

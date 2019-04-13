@@ -3,7 +3,8 @@ import { Checkbox, Grid, Header } from "semantic-ui-react";
 import Loaders from "../components/Loaders";
 import { connect } from "react-redux";
 import { changeCompleted } from "../actions/projectAction";
-
+import Confetti from "react-dom-confetti";
+import Error from "../components/Error";
 const MoodBoard = React.lazy(() => import("./MoodBoard"));
 const Comments = React.lazy(() => import("./Comments"));
 const ColorPalette = React.lazy(() => import("./ColorPalette"));
@@ -12,7 +13,7 @@ const References = React.lazy(() => import("./References"));
 class ProjectsForm extends React.Component {
   handleToggle = event => {
     this.props.changeCompleted(
-      this.props.project.completed,
+      !this.props.project.completed,
       this.props.project.id
     );
   };
@@ -20,8 +21,10 @@ class ProjectsForm extends React.Component {
   render() {
     console.log(this.props.project);
     return (
-      <Grid columns="equal" centered>
+      <Grid columns="equal" centered style={{ zIndex: "2" }}>
+        {this.props.project.title === "Crab Party" ? <Error /> : null}
         <div style={{ flex: 1 }} />
+        <Confetti active={this.props.project.completed} />
         <Checkbox
           toggle
           checked={this.props.project.completed}
@@ -30,6 +33,7 @@ class ProjectsForm extends React.Component {
           style={{ marginRight: "3vw", marginTop: "2vh" }}
           label="Completed?"
         />
+
         <Grid.Row columns={3} centered>
           <Header id="moodboard-title">{this.props.project.title} </Header>
 

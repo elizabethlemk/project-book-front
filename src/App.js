@@ -13,6 +13,7 @@ import User from "./containers/User";
 import Projects from "./containers/Projects";
 import NavBar from "./containers/NavBar";
 import Blogs from "./containers/Blogs";
+import { BlogShow, ProjectShow, UserShow } from "./show-pages/Show";
 
 import Error from "./components/Error";
 import Login from "./components/Login";
@@ -42,6 +43,9 @@ class App extends React.Component {
           <Route exact path="/signup" component={Signup} />
           <Route exact path="/settings" component={Settings} />
           <Route exact path="/logout" component={Home} />
+          <Route exact path="/user/:id" component={UserShow} />
+          <Route exact path="/blog/:id" component={BlogShow} />
+          <Route exact path="/projects/:id" component={ProjectShow} />
           <Route path="/" component={Error} />
         </Switch>
       </div>
