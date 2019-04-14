@@ -2,8 +2,7 @@ import React from "react";
 import { Button, Icon, Menu, Segment } from "semantic-ui-react";
 import { connect } from "react-redux";
 import { loadProject } from "../actions/projectAction";
-
-import Error from "../components/Error";
+import Loaders from "../components/Loaders";
 import CreateProject from "../project-files/CreateProject";
 import ProjectsForm from "../project-files/ProjectsForm";
 
@@ -80,7 +79,7 @@ class Projects extends React.PureComponent {
           </Menu.Item>
         </Menu>
         <Segment attached="bottom">
-          {this.state.project_id ? <ProjectsForm /> : <Error />}
+          {this.state.project_id ? <ProjectsForm /> : <Loaders />}
         </Segment>
       </div>
     );

@@ -1,5 +1,7 @@
 import React from "react";
 import { Button, Form, Segment } from "semantic-ui-react";
+import CKEditor from "@ckeditor/ckeditor5-react";
+import ClassicEditor from "@ckeditor/ckeditor5-build-classic";
 import { connect } from "react-redux";
 import { addBlog, loadBlogs } from "../actions/blogAction";
 
@@ -7,7 +9,7 @@ class BlogForm extends React.Component {
   state = {
     user_id: this.props.user.id,
     title: "",
-    content: ""
+    content: "Write here about anything you want!"
   };
 
   handleChange = (event, { name, value }) => {
@@ -18,12 +20,15 @@ class BlogForm extends React.Component {
 
   handleSubmit = () => {
     this.props.addBlog(this.state);
-    this.setState({ title: "", content: "" });
+    this.setState({
+      title: "",
+      content: "Write here about anything you want!"
+    });
     this.props.loadBlogs(this.props.user.id);
   };
 
   render() {
-    const { content, title } = this.state;
+    const { title, content } = this.state;
     return (
       <Segment textAlign="center">
         <Form onSubmit={this.handleSubmit}>
@@ -34,12 +39,36 @@ class BlogForm extends React.Component {
             placeholder="Title of your blog post goes here!"
             onChange={this.handleChange}
           />
-          <Form.TextArea
-            label="Content"
-            value={content}
-            name="content"
-            placeholder="This is where I talk about things like my project or a technique I used."
-            onChange={this.handleChange}
+
+          <CKEditor
+            editor={ClassicEditor}
+            data={content}
+            config={{
+              removePlugins: ["Heading", "Link"],
+              toolbar: [
+                "bold",
+                "italic",
+                "bulletedList",
+                "numberedList",
+                "blockQuote",
+                "mediaEmbed"
+              ]
+            }}
+            onInit={editor => {
+              // You can store the "editor" and use when it is needed.
+              console.log("Editor is ready to use!", editor);
+            }}
+            onChange={(event, editor) => {
+              const data = editor.getData();
+              this.setState({ content: data });
+              console.log({ event, editor, data });
+            }}
+            onBlur={editor => {
+              console.log("Blur.", editor);
+            }}
+            onFocus={editor => {
+              console.log("Focus.", editor);
+            }}
           />
           <Button type="submit">Submit</Button>
         </Form>

@@ -1,7 +1,7 @@
 import React from "react";
 import ImageCard from "./ImageCard";
 import { Button, Container, Form, Grid, Table } from "semantic-ui-react";
-
+import ProgressiveImage from "react-progressive-image-loading";
 import { connect } from "react-redux";
 import { addBoardImage, loadProject } from "../actions/projectAction";
 
@@ -56,7 +56,11 @@ class MoodBoard extends React.Component {
         </Table>
         <Grid columns={3}>
           {this.props.images.map((image, index) => (
-            <ImageCard image={image} index={index} key={index} />
+            <ProgressiveImage
+              render={() => (
+                <ImageCard image={image} index={index} key={index} />
+              )}
+            />
           ))}
         </Grid>
       </Container>

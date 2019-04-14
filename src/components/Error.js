@@ -1,5 +1,5 @@
 import React from "react";
-import { Container, Header } from "semantic-ui-react";
+import { Container } from "semantic-ui-react";
 import { Canvas } from "react-canvas-js";
 
 const Error = () => {
