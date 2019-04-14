@@ -4,7 +4,7 @@ import Loaders from "../components/Loaders";
 import { connect } from "react-redux";
 import { changeCompleted } from "../actions/projectAction";
 import Confetti from "react-dom-confetti";
-import Error from "../components/Error";
+import Crabs from "../components/Crabs";
 const MoodBoard = React.lazy(() => import("./MoodBoard"));
 const Comments = React.lazy(() => import("./Comments"));
 const ColorPalette = React.lazy(() => import("./ColorPalette"));
@@ -22,7 +22,7 @@ class ProjectsForm extends React.Component {
     console.log(this.props.project);
     return (
       <Grid columns="equal" centered style={{ zIndex: "2" }}>
-        {this.props.project.title === "Crab Party" ? <Error /> : null}
+        {this.props.project.title === "Crab Party" ? <Crabs /> : null}
         <div style={{ flex: 1 }} />
         <Confetti active={this.props.project.completed} />
         <Checkbox

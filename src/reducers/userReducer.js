@@ -1,5 +1,7 @@
 const initialState = {
-  user: { projects: [], blog_posts: [] }
+  user: { projects: [], blog_posts: [] },
+  allUsers: [],
+  allBlogs: []
 };
 
 const userReducer = (state = initialState, action) => {
@@ -26,6 +28,10 @@ const userReducer = (state = initialState, action) => {
         pendingRequest: false,
         error: null
       };
+    case "LOAD_ALL_USERS":
+      return { ...state, allUsers: action.payload };
+    case "LOAD_ALL_BLOGS":
+      return { ...state, allBlogs: action.payload };
     case "LOG_IN":
       localStorage.setItem("token", action.payload.jwt);
       console.log("logged in");

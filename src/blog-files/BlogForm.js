@@ -44,10 +44,10 @@ class BlogForm extends React.Component {
             editor={ClassicEditor}
             data={content}
             config={{
-              removePlugins: ["Heading", "Link"],
               toolbar: [
                 "bold",
                 "italic",
+                "link",
                 "bulletedList",
                 "numberedList",
                 "blockQuote",

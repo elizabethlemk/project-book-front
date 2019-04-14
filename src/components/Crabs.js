@@ -2,7 +2,7 @@ import React from "react";
 import { Container } from "semantic-ui-react";
 import { Canvas } from "react-canvas-js";
 
-const Error = () => {
+const Crabs = () => {
   const crabURL1 = "https://i.imgur.com/Xh6StCV.png";
   const crabURL2 = "https://i.imgur.com/Ra5KrBL.png";
   const crabURL3 = "https://i.imgur.com/Fky8cWP.png";
@@ -130,4 +130,4 @@ const Error = () => {
   );
 };
 
-export default Error;
+export default Crabs;

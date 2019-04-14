@@ -12,6 +12,8 @@ import blog from "./reducers/blogReducer";
 import { Provider } from "react-redux";
 import thunk from "redux-thunk";
 
+window._ = require("lodash");
+
 const rootReducer = combineReducers({
   userReducer: user,
   projectReducer: project,

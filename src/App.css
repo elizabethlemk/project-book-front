@@ -1,52 +1,6 @@
-#splash {
-  background-image: url("jazmin-quaynor.jpg");
-  width: 100vw;
-  height: 100vh;
-  background-position: center;
-  background-repeat: no-repeat;
-  background-size: cover;
-}
-
-.ui button {
-  background: #ffbfcb none !important;
-  color: white !important;
-}
-
-#user-form {
-  max-width: 800px;
-  top: 20vh;
-  left: 30vw;
-}
-
-#user-container {
-  margin-top: 3rem !important;
-}
-
 #color-picker {
   position: absolute;
   z-index: 2;
-}
-
-#picker-container {
-  z-index: 2;
-  position: relative;
-  top: 80px;
-  left: -100px;
-}
-
-#swatch {
-  padding: 5px;
-  background: #fff;
-  border-radius: 1px;
-  box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.1);
-  display: inline-block;
-  cursor: pointer;
-}
-
-#swatch-color {
-  width: 50px;
-  height: 50px;
-  border-radius: 2px;
 }
 
 #middle {
@@ -76,4 +30,54 @@
   to {
     background-position: 200% center;
   }
+}
+
+#picker-container {
+  z-index: 2;
+  position: relative;
+  top: 80px;
+  left: -100px;
+}
+
+#settings {
+  margin-top: 5rem;
+}
+
+#splash {
+  background-image: url("jazmin-quaynor.jpg");
+  width: 100vw;
+  height: 100vh;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+#swatch {
+  padding: 5px;
+  background: #fff;
+  border-radius: 1px;
+  box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.1);
+  display: inline-block;
+  cursor: pointer;
+}
+
+#swatch-color {
+  width: 50px;
+  height: 50px;
+  border-radius: 2px;
+}
+
+.ui button {
+  background: #ffbfcb none !important;
+  color: white !important;
+}
+
+#user-form {
+  max-width: 800px;
+  top: 20vh;
+  left: 30vw;
+}
+
+#user-container {
+  margin-top: 3rem !important;
 }

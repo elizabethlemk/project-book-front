@@ -1,10 +1,23 @@
 import React from "react";
 import { NavLink } from "react-router-dom";
-import { Button, Dropdown, Header, Icon, Input, Menu } from "semantic-ui-react";
+import {
+  Button,
+  Dropdown,
+  Header,
+  Icon,
+  Input,
+  Menu,
+  Search
+} from "semantic-ui-react";
+import SearchField from "./SearchField";
 
 import { connect } from "react-redux";
 import { logOut } from "../actions/userAction";
 import { withRouter } from "react-router-dom";
+
+// <Menu.Item>
+//   <Input icon="search" placeholder="Search..." />
+// </Menu.Item>
 
 class NavBar extends React.Component {
   state = {
@@ -28,35 +41,38 @@ class NavBar extends React.Component {
     if (localStorage.token) {
       loginOptions = (
         <Menu.Menu position="right">
-          <Menu.Item>
-            <Input icon="search" placeholder="Search..." />
-          </Menu.Item>
-          <Dropdown
-            item
-            text={username ? username : <Icon loading name="spinner" />}
-            active={(activeItem === "user").toString()}
-            onClick={this.handleItemClick}
-          >
-            <Dropdown.Menu>
-              <Dropdown.Item as={NavLink} exact to="/user">
-                Profile
-              </Dropdown.Item>
-              <Dropdown.Item as={NavLink} exact to="/settings">
-                Settings
-              </Dropdown.Item>
-              <Dropdown.Item as={Button} onClick={this.handleLogOut}>
-                Logout
-              </Dropdown.Item>
-            </Dropdown.Menu>
-          </Dropdown>
+          <SearchField />
+          {username ? (
+            <Dropdown
+              item
+              text={username}
+              active={(activeItem === "user").toString()}
+              onClick={this.handleItemClick}
+            >
+              <Dropdown.Menu>
+                <Dropdown.Item as={NavLink} exact to="/user">
+                  Profile
+                </Dropdown.Item>
+                <Dropdown.Item as={NavLink} exact to="/settings">
+                  Settings
+                </Dropdown.Item>
+                <Dropdown.Item as={Button} onClick={this.handleLogOut}>
+                  Logout
+                </Dropdown.Item>
+              </Dropdown.Menu>
+            </Dropdown>
+          ) : (
+            <Menu.Item>
+              <Icon loading name="spinner" />
+            </Menu.Item>
+          )}
+          }
         </Menu.Menu>
       );
     } else {
       loginOptions = (
         <Menu.Menu position="right">
-          <Menu.Item>
-            <Input icon="search" placeholder="Search..." />
-          </Menu.Item>
+          <SearchField />
           <Menu.Item
             as={NavLink}
             exact
@@ -128,7 +144,10 @@ class NavBar extends React.Component {
 }
 
 const mapStateToProps = state => {
-  return { user: state.userReducer.user };
+  return {
+    user: state.userReducer.user,
+    allUsers: state.userReducer.allUsers
+  };
 };
 
 export default connect(

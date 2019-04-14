@@ -1,28 +1,14 @@
 import React from "react";
 import { Container, Grid, Header } from "semantic-ui-react";
+import { connect } from "react-redux";
+
 import { UserCard } from "../components/UserCard";
 import { BlogCard } from "../blog-files/BlogCard";
 import Loaders from "../components/Loaders";
 
 class Forum extends React.Component {
-  state = {
-    allBlogs: [],
-    allUsers: []
-  };
-
-  componentDidMount = () => {
-    fetch("http://localhost:4000/api/v1/users")
-      .then(resp => resp.json())
-      .then(json => this.setState({ allUsers: json }));
-
-    fetch("http://localhost:4000/api/v1/blog_posts")
-      .then(resp => resp.json())
-      .then(json => this.setState({ allBlogs: json }));
-  };
-
   render() {
-    console.log(this.state.allBlogs);
-    const { allBlogs, allUsers } = this.state;
+    const { allBlogs, allUsers } = this.props;
     return (
       <Container>
         <Grid columns={2}>
@@ -53,4 +39,11 @@ class Forum extends React.Component {
   }
 }
 
-export default Forum;
+const mapStateToProps = state => {
+  return {
+    allUsers: state.userReducer.allUsers,
+    allBlogs: state.userReducer.allBlogs
+  };
+};
+
+export default connect(mapStateToProps)(Forum);

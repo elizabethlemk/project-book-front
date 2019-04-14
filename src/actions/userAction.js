@@ -10,6 +10,14 @@ export const setUser = userObj => {
   return { type: "SET_USER", payload: userObj };
 };
 
+export const loadAllUsers = users => {
+  return { type: "LOAD_ALL_USERS", payload: users };
+};
+
+export const loadAllBlogs = blogs => {
+  return { type: "LOAD_ALL_BLOGS", payload: blogs };
+};
+
 export const logIn = userObj => {
   return { type: "LOG_IN", payload: userObj };
 };
@@ -83,5 +91,21 @@ export const getAuth = userInfo => {
         }
       })
       .catch(error => dispatch(logInError(error)));
+  };
+};
+
+export const getAllUsers = () => {
+  return dispatch => {
+    return fetch("http://localhost:4000/api/v1/users")
+      .then(resp => resp.json())
+      .then(json => dispatch(loadAllUsers(json)));
+  };
+};
+
+export const getAllBlogs = () => {
+  return dispatch => {
+    return fetch("http://localhost:4000/api/v1/blog_posts")
+      .then(resp => resp.json())
+      .then(json => dispatch(loadAllBlogs(json)));
   };
 };

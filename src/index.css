@@ -1,13 +1,12 @@
 @import url("https://fonts.googleapis.com/css?family=Arbutus+Slab|Courgette|Homemade+Apple|Spectral+SC");
 
-#quote {
-  margin-top: 35vh !important;
-  background-color: pink !important;
-  font-family: "Homemade Apple", cursive !important;
-  font-size: 5rem !important;
-  width: 100vw;
+#middle {
+  margin-top: 1rem !important;
+  font-size: 2em;
+  letter-spacing: 0.5em;
+  text-transform: uppercase;
+  font-family: "Spectral SC", serif !important;
 }
-
 #moodboard-title {
   font-family: "Homemade Apple", cursive !important;
   font-size: 3rem !important;
@@ -17,13 +16,6 @@
 
 #moodboard-container {
   margin-top: 1rem;
-}
-
-.ui.toggle.checkbox input:focus:checked ~ .box:before,
-.ui.toggle.checkbox input:focus:checked ~ label:before,
-.ui.toggle.checkbox input:checked ~ .box:before,
-.ui.toggle.checkbox input:checked ~ label:before {
-  background-color: #b5cc18 !important;
 }
 
 #project-header {
@@ -39,17 +31,24 @@
   background-color: pink !important;
 }
 
+#quote {
+  margin-top: 35vh !important;
+  background-color: pink !important;
+  font-family: "Homemade Apple", cursive !important;
+  font-size: 5rem !important;
+  width: 100vw;
+}
+
+.ui.toggle.checkbox input:focus:checked ~ .box:before,
+.ui.toggle.checkbox input:focus:checked ~ label:before,
+.ui.toggle.checkbox input:checked ~ .box:before,
+.ui.toggle.checkbox input:checked ~ label:before {
+  background-color: #b5cc18 !important;
+}
+
 #username {
   font-family: "Homemade Apple", cursive !important;
   font-size: 2.5rem !important;
   color: pink !important;
   overflow: inherit !important;
-}
-
-#middle {
-  margin-top: 0.3rem !important;
-  font-size: 2em;
-  letter-spacing: 0.5em;
-  text-transform: uppercase;
-  font-family: "Spectral SC", serif !important;
 }

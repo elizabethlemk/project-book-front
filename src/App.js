@@ -1,10 +1,11 @@
 import React from "react";
-import { Route, Switch, withRouter } from "react-router-dom";
-
+import { Route, withRouter } from "react-router-dom";
+import Switch from "react-router-transition-switch";
+import Fader from "react-fader";
 import "./App.css";
 
 import { connect } from "react-redux";
-import { checkToken } from "./actions/userAction";
+import { checkToken, getAllUsers, getAllBlogs } from "./actions/userAction";
 import { loadBlogs } from "./actions/blogAction";
 
 import Home from "./containers/Home";
@@ -15,13 +16,15 @@ import NavBar from "./containers/NavBar";
 import Blogs from "./containers/Blogs";
 import { BlogShow, ProjectShow, UserShow } from "./show-pages/Show";
 
-import Error from "./components/Error";
+import Crabs from "./components/Crabs";
 import Login from "./components/Login";
 import Settings from "./components/Settings";
 import Signup from "./components/Signup";
 
 class App extends React.Component {
   componentDidMount = () => {
+    this.props.getAllUsers();
+    this.props.getAllBlogs();
     if (localStorage.token) {
       this.props.checkToken();
     } else {
@@ -30,10 +33,11 @@ class App extends React.Component {
   };
 
   render() {
+    console.log(this.props);
     return (
       <div>
         <NavBar />
-        <Switch>
+        <Switch component={Fader}>
           <Route exact path="/home" component={Home} />
           <Route exact path="/projects" component={Projects} />
           <Route exact path="/blogs" component={Blogs} />
@@ -46,7 +50,7 @@ class App extends React.Component {
           <Route exact path="/user/:id" component={UserShow} />
           <Route exact path="/blog/:id" component={BlogShow} />
           <Route exact path="/projects/:id" component={ProjectShow} />
-          <Route path="/" component={Error} />
+          <Route path="/" component={Crabs} />
         </Switch>
       </div>
     );
@@ -54,10 +58,10 @@ class App extends React.Component {
 }
 
 const mapStateToProps = state => {
-  return { user: state.userReducer.user };
+  return { user: state.userReducer.user, allUsers: state.userReducer.allUsers };
 };
 
 export default connect(
   mapStateToProps,
-  { checkToken, loadBlogs }
+  { checkToken, loadBlogs, getAllBlogs, getAllUsers }
 )(withRouter(App));
