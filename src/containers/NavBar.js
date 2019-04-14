@@ -15,10 +15,6 @@ import { connect } from "react-redux";
 import { logOut } from "../actions/userAction";
 import { withRouter } from "react-router-dom";
 
-// <Menu.Item>
-//   <Input icon="search" placeholder="Search..." />
-// </Menu.Item>
-
 class NavBar extends React.Component {
   state = {
     activeItem: ""

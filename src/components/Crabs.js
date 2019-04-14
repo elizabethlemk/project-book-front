@@ -109,7 +109,7 @@ const Crabs = () => {
     ],
     size: 200,
     minSpeed: 1,
-    maxSpeed: 5,
+    maxSpeed: 6,
     minSize: 100,
     width: "100vw",
     height: "100vh",

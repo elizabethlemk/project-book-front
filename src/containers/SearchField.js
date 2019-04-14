@@ -32,8 +32,11 @@ class SearchField extends React.Component {
       });
     }, 300);
   };
+
   render() {
-    const resultRenderer = ({ username }) => <Label content={username} />;
+    const resultRenderer = ({ username }) => (
+      <Label content={username} as={NavLink} to={`/users/${username}`} />
+    );
 
     resultRenderer.propTypes = {
       username: PropTypes.string
@@ -48,6 +51,7 @@ class SearchField extends React.Component {
           onSearchChange={_.debounce(this.handleSearchChange, 500, {
             leading: true
           })}
+          onSubmit={this.resetComponent}
           results={results}
           resultRenderer={resultRenderer}
           value={value}
