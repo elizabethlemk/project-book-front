@@ -2,6 +2,7 @@ import React from "react";
 import { Container, Form, Header, Image, Tab } from "semantic-ui-react";
 import { DateInput } from "semantic-ui-calendar-react";
 import { connect } from "react-redux";
+import { updateUser } from "../actions/userAction";
 
 class Edit extends React.Component {
   state = {
@@ -28,13 +29,13 @@ class Edit extends React.Component {
     event.preventDefault();
     const formData = new FormData();
     const { first_name, last_name, email, birthday, image } = this.state;
-    formData.append("user[image]", image);
+    // formData.append("user[image]", image);
     formData.append("user[last_name]", last_name);
     formData.append("user[first_name]", first_name);
     formData.append("user[email]", email);
     formData.append("user[birthday]", birthday);
 
-    this.props.updateUser(formData);
+    this.props.updateUser(this.props.user.id, formData);
   };
   render() {
     const { first_name, last_name, email, birthday } = this.state;
@@ -108,7 +109,12 @@ class Account extends React.Component {
   };
   handleSubmit = event => {
     event.preventDefault();
-    this.props.updateUser(this.state);
+    const formData = new FormData();
+    const { username, password, password_confirmation } = this.state;
+    formData.append("user[username]", username);
+    formData.append("user[password]", password);
+    formData.append("user[password_confirmation]", password_confirmation);
+    this.props.updateUser(this.props.user.id, formData);
   };
   render() {
     const { password, username, password_confirmation } = this.state;
@@ -166,7 +172,7 @@ class Settings extends React.Component {
         menuItem: "Edit Profile",
         render: () => (
           <Tab.Pane>
-            <Edit user={this.props.user} />
+            <Edit user={this.props.user} updateUser={this.props.updateUser} />
           </Tab.Pane>
         )
       },
@@ -174,7 +180,10 @@ class Settings extends React.Component {
         menuItem: "Account Info",
         render: () => (
           <Tab.Pane>
-            <Account user={this.props.user} />
+            <Account
+              user={this.props.user}
+              updateUser={this.props.updateUser}
+            />
           </Tab.Pane>
         )
       },
@@ -203,4 +212,7 @@ const mapStateToProps = state => {
   };
 };
 
-export default connect(mapStateToProps)(Settings);
+export default connect(
+  mapStateToProps,
+  { updateUser }
+)(Settings);

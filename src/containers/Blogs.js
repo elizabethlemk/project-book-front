@@ -34,8 +34,8 @@ class Blogs extends React.Component {
             Add a new blog post
           </div>
         )}
-
         {this.state.active ? <BlogForm /> : null}
+
         <Item.Group divided style={{ marginTop: "6vh" }}>
           {this.props.blogs.length > 0 ? (
             this.props.blogs.map(blog => (

@@ -1,6 +1,11 @@
 body {
   background-image: url("white_brick_wall.png");
 }
+.ck.ck-editor__main > .ck-editor__editable,
+.ck.ck-editor__main > .ck-editor__editable {
+  height: 300px;
+  text-align: left;
+}
 
 #color-picker {
   position: absolute;

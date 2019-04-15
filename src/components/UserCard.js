@@ -1,6 +1,6 @@
 import React from "react";
 import { NavLink } from "react-router-dom";
-import { Card, Grid, Icon, Image, Segment } from "semantic-ui-react";
+import { Card, Container, Grid, Header, Icon, Image } from "semantic-ui-react";
 import { UserBlogCard } from "../blog-files/BlogCard";
 
 export const UserCard = ({ user }) => {
@@ -36,10 +36,11 @@ export const UserCard = ({ user }) => {
 
 export const UserBlogs = ({ user }) => {
   return (
-    <Segment>
-      {user.blogs.map(blog => (
+    <Container>
+      <Header>Blogs </Header>
+      {user.blog_posts.map(blog => (
         <UserBlogCard blog={blog} />
       ))}
-    </Segment>
+    </Container>
   );
 };

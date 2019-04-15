@@ -14,7 +14,8 @@ import User from "./containers/User";
 import Projects from "./containers/Projects";
 import NavBar from "./containers/NavBar";
 import Blogs from "./containers/Blogs";
-import { BlogShow, ProjectShow, UserShow } from "./show-pages/Show";
+import UserContainer from "./show-pages/UserContainer";
+import { BlogShow, ProjectShow } from "./show-pages/Show";
 
 import Crabs from "./components/Crabs";
 import Login from "./components/Login";
@@ -49,7 +50,9 @@ class App extends React.Component {
           <Route
             exact
             path="/users/:username"
-            render={props => <UserShow props={this.props} />}
+            render={props => (
+              <UserContainer location={this.props.history.location.pathname} />
+            )}
           />
           <Route
             exact

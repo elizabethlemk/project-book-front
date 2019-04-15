@@ -1,33 +1,35 @@
 import React from "react";
 import { NavLink } from "react-router-dom";
-import { Grid, Item } from "semantic-ui-react";
+import { Card, Grid } from "semantic-ui-react";
 import ReactHtmlParser from "react-html-parser";
 
 export const BlogCard = ({ blog }) => {
   return (
-    <Grid.Column>
-      <Item key={blog.id}>
-        <Item.Content>
-          <Item.Header>{blog.title}</Item.Header>
-          <Item.Meta>
+    <Grid.Row>
+      <Card key={blog.id} style={{ width: "30vw" }}>
+        <Card.Content>
+          <Card.Header>{blog.title}</Card.Header>
+          <Card.Meta>
             by <NavLink to={`/users/${blog.user}`}>{blog.user}</NavLink>
-          </Item.Meta>
-          <Item.Meta>Posted on {blog.created_at}</Item.Meta>
-          {ReactHtmlParser(blog.content)}
-        </Item.Content>
-      </Item>
-    </Grid.Column>
+          </Card.Meta>
+          <Card.Meta>Posted on {blog.created_at}</Card.Meta>
+          <Card.Description textAlign="left">
+            {ReactHtmlParser(blog.content)}
+          </Card.Description>
+        </Card.Content>
+      </Card>
+    </Grid.Row>
   );
 };
 
 export const UserBlogCard = ({ blog }) => {
   return (
-    <Item key={blog.id}>
-      <Item.Content>
-        <Item.Header>{blog.title}</Item.Header>
-        <Item.Meta>Posted on {blog.created_at}</Item.Meta>
+    <Card key={blog.id} fluid>
+      <Card.Content>
+        <Card.Header>{blog.title}</Card.Header>
+        <Card.Meta>Posted on {blog.created_at}</Card.Meta>
         {ReactHtmlParser(blog.content)}
-      </Item.Content>
-    </Item>
+      </Card.Content>
+    </Card>
   );
 };

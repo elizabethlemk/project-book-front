@@ -6,6 +6,10 @@ export const createUser = userObj => {
   return { type: "CREATE_USER", payload: userObj };
 };
 
+export const editUser = userObj => {
+  return { type: "EDIT_USER", payload: userObj };
+};
+
 export const setUser = userObj => {
   return { type: "SET_USER", payload: userObj };
 };
@@ -16,6 +20,10 @@ export const loadAllUsers = users => {
 
 export const loadAllBlogs = blogs => {
   return { type: "LOAD_ALL_BLOGS", payload: blogs };
+};
+
+export const loadAllProjects = projects => {
+  return { type: "LOAD_ALL_PROJECTS", payload: projects };
 };
 
 export const logIn = userObj => {
@@ -47,6 +55,23 @@ export const addUser = formData => {
       .then(resp => resp.json())
       .then(json => {
         dispatch(createUser(json));
+      });
+  };
+};
+
+export const updateUser = (id, formData) => {
+  return dispatch => {
+    return fetch(`http://localhost:4000/api/v1/users/${id}`, {
+      method: "PATCH",
+      headers: {
+        Authorization: `Bearer ${localStorage.token}`
+      },
+      body: formData
+    })
+      .then(resp => resp.json())
+      .then(json => {
+        console.log(json);
+        dispatch(editUser(json));
       });
   };
 };
@@ -107,5 +132,13 @@ export const getAllBlogs = () => {
     return fetch("http://localhost:4000/api/v1/blog_posts")
       .then(resp => resp.json())
       .then(json => dispatch(loadAllBlogs(json)));
+  };
+};
+
+export const getAllProjects = () => {
+  return dispatch => {
+    return fetch("http://localhost:4000/api/v1/projects")
+      .then(resp => resp.json())
+      .then(json => dispatch(loadAllProjects(json)));
   };
 };

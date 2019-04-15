@@ -54,7 +54,6 @@ class NavBar extends React.Component {
               <Icon loading name="spinner" />
             </Menu.Item>
           )}
-          }
         </Menu.Menu>
       );
     } else {

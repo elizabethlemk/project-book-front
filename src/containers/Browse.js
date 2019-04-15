@@ -22,8 +22,7 @@ class Forum extends React.Component {
               <Loaders />
             )}
           </Grid>
-
-          <Grid columns={2} centered>
+          <Grid centered columns={1}>
             <Grid.Row>
               <Header>Blogs</Header>
             </Grid.Row>

@@ -1,7 +1,8 @@
 const initialState = {
   user: { projects: [], blog_posts: [] },
   allUsers: [],
-  allBlogs: []
+  allBlogs: [],
+  allProjects: []
 };
 
 const userReducer = (state = initialState, action) => {
@@ -28,10 +29,14 @@ const userReducer = (state = initialState, action) => {
         pendingRequest: false,
         error: null
       };
+    case "EDIT_USER":
+      return { ...state, user: action.payload.user };
     case "LOAD_ALL_USERS":
       return { ...state, allUsers: action.payload };
     case "LOAD_ALL_BLOGS":
       return { ...state, allBlogs: action.payload };
+    case "LOAD_ALL_PROJECTS":
+      return { ...state, allProjects: action.payload };
     case "LOG_IN":
       localStorage.setItem("token", action.payload.jwt);
       console.log("logged in");
