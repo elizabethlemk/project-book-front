@@ -28,6 +28,10 @@ export const createBoardImage = images => {
 
 export const removeComment = () => {};
 
+export const newColor = color => {
+  return { type: "ADD_COLOR", payload: color };
+};
+
 //---------------------//
 // T H U N K
 //---------------------//
@@ -141,7 +145,9 @@ export const addColor = projectId => {
         accepts: "application/json"
       },
       body: JSON.stringify({ color_hex: "white", project_id: projectId })
-    });
+    })
+      .then(resp => resp.json())
+      .then(json => dispatch(newColor(json)));
   };
 };
 

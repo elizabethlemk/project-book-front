@@ -1,14 +1,6 @@
 import React from "react";
 import { NavLink } from "react-router-dom";
-import {
-  Button,
-  Dropdown,
-  Header,
-  Icon,
-  Input,
-  Menu,
-  Search
-} from "semantic-ui-react";
+import { Button, Dropdown, Header, Icon, Menu } from "semantic-ui-react";
 import SearchField from "./SearchField";
 
 import { connect } from "react-redux";

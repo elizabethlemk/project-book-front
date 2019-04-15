@@ -114,7 +114,7 @@ const Crabs = () => {
     width: "100vw",
     height: "100vh",
     alpha: 1,
-    backgroundColor: "none"
+    backgroundColor: "#fff"
   };
 
   return (

@@ -1,13 +1,14 @@
 import React from "react";
 
-export const UserShow = ({ user }) => {
+export const UserShow = props => {
+  console.log(props);
   return <div>USER PAGE</div>;
 };
 
-export const BlogShow = ({ blog }) => {
+export const BlogShow = props => {
   return <div>BLOG SHOW</div>;
 };
 
-export const ProjectShow = ({ project }) => {
+export const ProjectShow = props => {
   return <div>PROJECT</div>;
 };

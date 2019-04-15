@@ -1,6 +1,7 @@
 import React from "react";
 import { Container, Divider, Form, Header, Segment } from "semantic-ui-react";
 import { DateInput } from "semantic-ui-calendar-react";
+import defaultImage from "./avatar-default.png";
 
 import { withRouter } from "react-router-dom";
 import { addUser, getAuth } from "../actions/userAction";
@@ -15,10 +16,7 @@ class Signup extends React.Component {
     password_confirmation: "",
     email: "",
     birthday: "",
-    image: {
-      image_url:
-        "https://s3.us-east-2.amazonaws.com/project-book-mod-5/avatar-default.png"
-    }
+    image: defaultImage
   };
 
   handleChange = (event, { name, value }) => {
@@ -28,6 +26,7 @@ class Signup extends React.Component {
   };
 
   handleFile = event => {
+    console.log(event.target.files[0]);
     this.setState({
       image: event.target.files[0]
     });

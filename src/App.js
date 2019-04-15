@@ -33,7 +33,6 @@ class App extends React.Component {
   };
 
   render() {
-    console.log(this.props);
     return (
       <div>
         <NavBar />
@@ -47,9 +46,21 @@ class App extends React.Component {
           <Route exact path="/signup" component={Signup} />
           <Route exact path="/settings" component={Settings} />
           <Route exact path="/logout" component={Home} />
-          <Route exact path="/user/:id" component={UserShow} />
-          <Route exact path="/blog/:id" component={BlogShow} />
-          <Route exact path="/projects/:id" component={ProjectShow} />
+          <Route
+            exact
+            path="/users/:username"
+            render={props => <UserShow props={this.props} />}
+          />
+          <Route
+            exact
+            path="/blogs/:id"
+            render={props => <BlogShow props={this.props} />}
+          />
+          <Route
+            exact
+            path="/projects/:id"
+            render={props => <ProjectShow props={this.props} />}
+          />
           <Route path="/" component={Crabs} />
         </Switch>
       </div>

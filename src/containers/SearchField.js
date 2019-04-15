@@ -14,9 +14,10 @@ class SearchField extends React.Component {
   resetComponent = () =>
     this.setState({ isLoading: false, results: [], value: "" });
 
-  handleResultSelect = (e, { result }) =>
-    this.setState({ value: result.username });
-
+  handleResultSelect = (e, { result }) => {
+    // this.setState({ value: result.username });
+    this.resetComponent();
+  };
   handleSearchChange = (e, { value }) => {
     this.setState({ isLoading: true, value });
 
@@ -35,13 +36,17 @@ class SearchField extends React.Component {
 
   render() {
     const resultRenderer = ({ username }) => (
-      <Label content={username} as={NavLink} to={`/users/${username}`} />
+      <Label
+        key={username}
+        content={username}
+        as={NavLink}
+        to={`/users/${username}`}
+      />
     );
 
     resultRenderer.propTypes = {
       username: PropTypes.string
     };
-    console.log(this.state);
     const { isLoading, value, results } = this.state;
     return (
       <Menu.Item>
@@ -51,7 +56,6 @@ class SearchField extends React.Component {
           onSearchChange={_.debounce(this.handleSearchChange, 500, {
             leading: true
           })}
-          onSubmit={this.resetComponent}
           results={results}
           resultRenderer={resultRenderer}
           value={value}

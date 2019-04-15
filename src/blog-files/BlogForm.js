@@ -70,7 +70,9 @@ class BlogForm extends React.Component {
               console.log("Focus.", editor);
             }}
           />
-          <Button type="submit">Submit</Button>
+          <Button type="submit" style={{ marginTop: "1rem" }}>
+            Submit
+          </Button>
         </Form>
       </Segment>
     );

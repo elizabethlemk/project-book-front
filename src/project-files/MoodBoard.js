@@ -28,7 +28,6 @@ class MoodBoard extends React.Component {
   };
 
   render() {
-    console.log(this.props);
     return (
       <Container id="moodboard-container">
         <Table textAlign="center">
@@ -57,6 +56,7 @@ class MoodBoard extends React.Component {
         <Grid columns={3}>
           {this.props.images.map((image, index) => (
             <ProgressiveImage
+              key={index}
               render={() => (
                 <ImageCard image={image} index={index} key={index} />
               )}

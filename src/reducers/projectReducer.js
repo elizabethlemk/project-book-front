@@ -50,6 +50,15 @@ const projectReducer = (state = initialState, action) => {
         ...state,
         images: [...state.images, action.payload.project.images]
       };
+    case "ADD_COLOR":
+      return {
+        ...state,
+        project: action.payload.color.project,
+        colors: action.payload.color.project.colors,
+        links: action.payload.color.project.links,
+        images: action.payload.color.project.images,
+        comments: action.payload.color.project.notes
+      };
     default:
       return state;
   }

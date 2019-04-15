@@ -7,11 +7,9 @@ import { addColor, loadProject } from "../actions/projectAction";
 class ColorPalette extends React.Component {
   handleNewSwatch = () => {
     this.props.addColor(this.props.project.id);
-    this.props.loadProject(this.props.project.id);
   };
 
   render() {
-    console.log(this.props);
     return (
       <Container>
         <Table textAlign="center">
