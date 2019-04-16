@@ -1,7 +1,8 @@
 import React from "react";
 import { Container, Grid } from "semantic-ui-react";
 import { connect } from "react-redux";
-import { UserCard, UserBlogs } from "../components/UserCard";
+import { UserCard } from "../components/UserCard";
+import { BlogCard } from "../blog-files/BlogCard";
 import { ProjectContainer } from "./ProjectContainer";
 
 class UserContainer extends React.Component {
@@ -34,14 +35,20 @@ class UserContainer extends React.Component {
       <Container
         textAlign="center"
         fluid
-        style={{ marginTop: "10vh", padding: "5rem" }}
+        style={{ marginTop: "5vh", padding: "5rem" }}
       >
         <Grid columns={3}>
           <Grid.Column width={3}>
             {this.state.user ? <UserCard user={this.state.user} /> : null}
           </Grid.Column>
           <Grid.Column width={4}>
-            {this.state.user ? <UserBlogs user={this.state.user} /> : null}
+            {this.state.user
+              ? this.state.user.blog_posts.map(blog => (
+                  <Grid.Row style={{ paddingBottom: "1rem" }}>
+                    <BlogCard blog={blog} />
+                  </Grid.Row>
+                ))
+              : null}
           </Grid.Column>
           <Grid.Column width={9}>
             {this.state.user ? <ProjectContainer /> : null}

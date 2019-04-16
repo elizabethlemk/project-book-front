@@ -121,6 +121,8 @@ export const addBoardImage = (formData, projectId) => {
   };
 };
 
+export const deleteBoardImage = () => {};
+
 export const changeCompleted = (toggleInfo, projectId) => {
   return dispatch => {
     return fetch(`http://localhost:4000/api/v1/projects/${projectId}`, {

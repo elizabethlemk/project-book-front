@@ -1,7 +1,7 @@
 import React from "react";
 import BlogForm from "../blog-files/BlogForm";
-import { UserBlogCard } from "../blog-files/BlogCard";
-import { Button, Container, Item, Placeholder } from "semantic-ui-react";
+import { UserBlogCard, BlogPlaceholder } from "../blog-files/BlogCard";
+import { Button, Container, Grid, Item } from "semantic-ui-react";
 import { connect } from "react-redux";
 import { loadBlogs } from "../actions/blogAction";
 
@@ -36,25 +36,15 @@ class Blogs extends React.Component {
         )}
         {this.state.active ? <BlogForm /> : null}
 
-        <Item.Group divided style={{ marginTop: "6vh" }}>
+        <Container centered columns={3} style={{ marginTop: "6vh" }}>
           {this.props.blogs.length > 0 ? (
             this.props.blogs.map(blog => (
               <UserBlogCard key={blog.id} blog={blog} />
             ))
           ) : (
-            <Placeholder fluid>
-              <Placeholder.Header image>
-                <Placeholder.Line />
-                <Placeholder.Line />
-              </Placeholder.Header>
-              <Placeholder.Paragraph>
-                <Placeholder.Line />
-                <Placeholder.Line />
-                <Placeholder.Line />
-              </Placeholder.Paragraph>
-            </Placeholder>
+            <BlogPlaceholder />
           )}
-        </Item.Group>
+        </Container>
       </Container>
     );
   }

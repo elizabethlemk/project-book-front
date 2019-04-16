@@ -1,13 +1,5 @@
 import React from "react";
-import {
-  Button,
-  Container,
-  Form,
-  Icon,
-  Label,
-  Ref,
-  Table
-} from "semantic-ui-react";
+import { Button, Form, Icon, Ref, Table } from "semantic-ui-react";
 import { DragDropContext, Droppable, Draggable } from "react-beautiful-dnd";
 import MicrolinkCard from "@microlink/react";
 import { connect } from "react-redux";
