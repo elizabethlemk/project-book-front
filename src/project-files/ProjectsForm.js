@@ -34,7 +34,7 @@ class ProjectsForm extends React.Component {
           label="Completed?"
         />
 
-        <Grid.Row columns={3} centered>
+        <Grid.Row columns={3} centered style={{ padding: "1rem" }}>
           <Header id="moodboard-title">{this.props.project.title} </Header>
 
           <Grid.Column width={3}>

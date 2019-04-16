@@ -2,6 +2,7 @@ import React from "react";
 import { Container, Grid } from "semantic-ui-react";
 import { connect } from "react-redux";
 import { UserCard, UserBlogs } from "../components/UserCard";
+import { ProjectContainer } from "./ProjectContainer";
 
 class UserContainer extends React.Component {
   state = {
@@ -30,13 +31,20 @@ class UserContainer extends React.Component {
     console.log(this.props.location.split("/")[2], this.props.allUsers);
     console.log(this.state);
     return (
-      <Container textAlign="center">
-        <Grid columns={2}>
-          <Grid.Column style={{ top: "10vh" }}>
+      <Container
+        textAlign="center"
+        fluid
+        style={{ marginTop: "10vh", padding: "5rem" }}
+      >
+        <Grid columns={3}>
+          <Grid.Column width={3}>
             {this.state.user ? <UserCard user={this.state.user} /> : null}
           </Grid.Column>
-          <Grid.Column style={{ top: "10vh" }}>
+          <Grid.Column width={4}>
             {this.state.user ? <UserBlogs user={this.state.user} /> : null}
+          </Grid.Column>
+          <Grid.Column width={9}>
+            {this.state.user ? <ProjectContainer /> : null}
           </Grid.Column>
         </Grid>
       </Container>

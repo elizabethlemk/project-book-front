@@ -1,8 +1,8 @@
 import React from "react";
-import { Grid, Popup } from "semantic-ui-react";
+import { Grid, Icon, Popup } from "semantic-ui-react";
 import { ChromePicker } from "react-color";
 import { connect } from "react-redux";
-import { updateColor } from "../actions/projectAction";
+import { updateColor, deleteColor } from "../actions/projectAction";
 
 class Swatch extends React.Component {
   state = {
@@ -15,6 +15,9 @@ class Swatch extends React.Component {
     this.setState({ active: !this.state.active });
   };
 
+  handleDelete = () => {
+    this.props.deleteColor(this.state.id);
+  };
   handleChange = color => {
     this.setState({ color: color.hex }, () =>
       this.props.updateColor(this.state.id, color.hex)
@@ -26,6 +29,18 @@ class Swatch extends React.Component {
       <Popup
         trigger={
           <Grid.Column>
+            <Icon
+              name="x"
+              onClick={this.handleDelete}
+              inverted
+              color="grey"
+              style={{
+                top: "0",
+                zIndex: "1000",
+                left: "0",
+                position: "absolute"
+              }}
+            />
             <div id="swatch" onClick={this.handleClick}>
               <div
                 id="swatch-color"
@@ -47,5 +62,5 @@ class Swatch extends React.Component {
 
 export default connect(
   null,
-  { updateColor }
+  { updateColor, deleteColor }
 )(Swatch);

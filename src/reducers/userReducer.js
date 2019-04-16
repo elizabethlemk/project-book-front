@@ -31,6 +31,15 @@ const userReducer = (state = initialState, action) => {
       };
     case "EDIT_USER":
       return { ...state, user: action.payload.user };
+    case "REMOVE_USER":
+      debugger;
+      localStorage.clear();
+      const users = state.filter(user => user.id !== action.payload.user.id);
+      return {
+        ...state,
+        user: { projects: [], blog_posts: [] },
+        allUsers: users
+      };
     case "LOAD_ALL_USERS":
       return { ...state, allUsers: action.payload };
     case "LOAD_ALL_BLOGS":

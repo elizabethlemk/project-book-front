@@ -2,31 +2,35 @@
 // D I S P A T C H
 //---------------------//
 
-export const createUser = userObj => {
+const createUser = userObj => {
   return { type: "CREATE_USER", payload: userObj };
 };
 
-export const editUser = userObj => {
+const editUser = userObj => {
   return { type: "EDIT_USER", payload: userObj };
 };
 
-export const setUser = userObj => {
+const setUser = userObj => {
   return { type: "SET_USER", payload: userObj };
 };
 
-export const loadAllUsers = users => {
+const removeUser = userObj => {
+  return { type: "REMOVE_USER", payload: userObj };
+};
+
+const loadAllUsers = users => {
   return { type: "LOAD_ALL_USERS", payload: users };
 };
 
-export const loadAllBlogs = blogs => {
+const loadAllBlogs = blogs => {
   return { type: "LOAD_ALL_BLOGS", payload: blogs };
 };
 
-export const loadAllProjects = projects => {
+const loadAllProjects = projects => {
   return { type: "LOAD_ALL_PROJECTS", payload: projects };
 };
 
-export const logIn = userObj => {
+const logIn = userObj => {
   return { type: "LOG_IN", payload: userObj };
 };
 
@@ -70,9 +74,19 @@ export const updateUser = (id, formData) => {
     })
       .then(resp => resp.json())
       .then(json => {
-        console.log(json);
         dispatch(editUser(json));
       });
+  };
+};
+
+export const deleteUser = id => {
+  return dispatch => {
+    return fetch(`http://localhost:4000/api/v1/users/${id}`, {
+      method: "DELETE",
+      headers: {
+        Authorization: `Bearer ${localStorage.token}`
+      }
+    }).then(user => dispatch(removeUser(user)));
   };
 };
 

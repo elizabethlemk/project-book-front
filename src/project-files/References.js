@@ -1,5 +1,13 @@
 import React from "react";
-import { Button, Form, Icon, Ref, Table } from "semantic-ui-react";
+import {
+  Button,
+  Container,
+  Form,
+  Icon,
+  Label,
+  Ref,
+  Table
+} from "semantic-ui-react";
 import { DragDropContext, Droppable, Draggable } from "react-beautiful-dnd";
 import MicrolinkCard from "@microlink/react";
 import { connect } from "react-redux";
@@ -42,6 +50,10 @@ class References extends React.Component {
   handleShow = () => {
     // handles if the form will show in the table or not
     this.setState({ active: !this.state.active });
+  };
+
+  handleClick = () => {
+    console.log("hi");
   };
 
   handleChange = event => {

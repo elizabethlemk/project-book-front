@@ -6,7 +6,7 @@ import ReactHtmlParser from "react-html-parser";
 export const BlogCard = ({ blog }) => {
   return (
     <Grid.Row>
-      <Card key={blog.id} style={{ width: "30vw" }}>
+      <Card key={blog.id} fluid>
         <Card.Content>
           <Card.Header>{blog.title}</Card.Header>
           <Card.Meta>

@@ -1,8 +1,17 @@
 import React from "react";
-import { Container, Form, Header, Image, Tab } from "semantic-ui-react";
+import {
+  Button,
+  Container,
+  Form,
+  Header,
+  Icon,
+  Image,
+  Modal,
+  Tab
+} from "semantic-ui-react";
 import { DateInput } from "semantic-ui-calendar-react";
 import { connect } from "react-redux";
-import { updateUser } from "../actions/userAction";
+import { updateUser, deleteUser } from "../actions/userAction";
 
 class Edit extends React.Component {
   state = {
@@ -159,6 +168,62 @@ class Account extends React.Component {
   }
 }
 
+class Delete extends React.Component {
+  state = {
+    active: false
+  };
+
+  handleOpen = () => {
+    console.log("open");
+    this.setState({ active: true });
+  };
+
+  handleClose = () => {
+    console.log("close");
+    this.setState({ active: false });
+  };
+
+  handleDelete = () => {
+    this.setState({ active: false });
+    console.log(this.props.user);
+    this.props.deleteUser(this.props.user.id);
+    this.props.history.push("/home");
+  };
+  render() {
+    return (
+      <Container>
+        <Modal
+          trigger={
+            <Button onClick={this.handleOpen} style={{ marginTop: "3vh" }}>
+              Delete Account
+            </Button>
+          }
+          basic
+          size="small"
+          open={this.state.active}
+          onClose={this.handleClose}
+        >
+          <Header icon="trash alternate" content="Delete your account" />
+          <Modal.Content>
+            <p>
+              Are you sure you want to delete your account? This is permanent,
+              and can not be reverted.
+            </p>
+          </Modal.Content>
+          <Modal.Actions>
+            <Button basic color="red" inverted onClick={this.handleClose}>
+              <Icon name="remove" /> No
+            </Button>
+            <Button basic color="green" inverted onClick={this.handleDelete}>
+              <Icon name="checkmark" /> Yes
+            </Button>
+          </Modal.Actions>
+        </Modal>
+      </Container>
+    );
+  }
+}
+
 class Settings extends React.Component {
   state = { activeIndex: 0 };
 
@@ -188,8 +253,12 @@ class Settings extends React.Component {
         )
       },
       {
-        menuItem: "Favorites",
-        render: () => <Tab.Pane textAlign="center">Favorites go here</Tab.Pane>
+        menuItem: "Delete Account",
+        render: () => (
+          <Tab.Pane textAlign="center">
+            <Delete user={this.props.user} deleteUser={this.props.deleteUser} />
+          </Tab.Pane>
+        )
       }
     ];
     return (
@@ -214,5 +283,5 @@ const mapStateToProps = state => {
 
 export default connect(
   mapStateToProps,
-  { updateUser }
+  { updateUser, deleteUser }
 )(Settings);

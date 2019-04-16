@@ -19,7 +19,7 @@ class ColorPalette extends React.Component {
             </Table.Row>
           </Table.Header>
         </Table>
-        <Grid columns={9} textAlign="center">
+        <Grid columns={9} textAlign="center" style={{ padding: "1rem" }}>
           {this.props.colors.map(color => (
             <Swatch key={color.id} color={color} />
           ))}

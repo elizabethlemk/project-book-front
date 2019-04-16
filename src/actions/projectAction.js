@@ -2,7 +2,7 @@
 // D I S P A T C H
 //---------------------//
 
-export const createProject = projectObj => {
+const createProject = projectObj => {
   return { type: "CREATE_PROJECT", payload: projectObj };
 };
 
@@ -10,15 +10,15 @@ export const updateProject = projectObj => {
   return { type: "UPDATE_PROJECT", payload: projectObj };
 };
 
-export const getProject = projectObj => {
+const getProject = projectObj => {
   return { type: "GET_PROJECT", payload: projectObj };
 };
 
-export const createComment = commentObj => {
+const createComment = commentObj => {
   return { type: "CREATE_COMMENT", payload: commentObj };
 };
 
-export const createRef = linkObj => {
+const createRef = linkObj => {
   return { type: "CREATE_REF", payload: linkObj };
 };
 
@@ -26,9 +26,11 @@ export const createBoardImage = images => {
   return { type: "CREATE_IMAGE", payload: images };
 };
 
-export const removeComment = () => {};
+export const removeColor = color => {
+  return { type: "REMOVE_COLOR", payload: color };
+};
 
-export const newColor = color => {
+const newColor = color => {
   return { type: "ADD_COLOR", payload: color };
 };
 
@@ -162,6 +164,17 @@ export const updateColor = (id, color) => {
       },
       body: JSON.stringify({ color_hex: color })
     });
+  };
+};
+
+export const deleteColor = id => {
+  return dispatch => {
+    return fetch(`http://localhost:4000/api/v1/colors/${id}`, {
+      method: "DELETE",
+      headers: {
+        Authorization: `Bearer ${localStorage.token}`
+      }
+    }).then(resp => dispatch(removeColor(id)));
   };
 };
 

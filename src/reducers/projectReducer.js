@@ -59,6 +59,14 @@ const projectReducer = (state = initialState, action) => {
         images: action.payload.color.project.images,
         comments: action.payload.color.project.notes
       };
+    case "REMOVE_COLOR":
+      const newColors = state.colors.filter(
+        color => color.id !== action.payload
+      );
+      return {
+        ...state,
+        colors: newColors
+      };
     default:
       return state;
   }

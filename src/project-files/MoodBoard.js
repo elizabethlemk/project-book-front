@@ -1,6 +1,6 @@
 import React from "react";
 import ImageCard from "./ImageCard";
-import { Button, Container, Form, Grid, Table } from "semantic-ui-react";
+import { Button, Container, Form, Grid, Label, Table } from "semantic-ui-react";
 import ProgressiveImage from "react-progressive-image-loading";
 import { connect } from "react-redux";
 import { addBoardImage, loadProject } from "../actions/projectAction";
