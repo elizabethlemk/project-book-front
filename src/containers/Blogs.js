@@ -37,7 +37,7 @@ class Blogs extends React.Component {
         )}
         {this.state.active ? <BlogForm /> : null}
 
-        <Container centered columns={3} style={{ marginTop: "6vh" }}>
+        <Container centered="true" columns={3} style={{ marginTop: "6vh" }}>
           {this.props.blogs.length > 0 ? (
             this.props.blogs.map(blog => (
               <UserBlogCard

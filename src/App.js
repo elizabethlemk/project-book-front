@@ -10,11 +10,11 @@ import { loadBlogs } from "./actions/blogAction";
 
 import Home from "./containers/Home";
 import Browse from "./containers/Browse";
+
 import User from "./containers/User";
 import Projects from "./containers/Projects";
 import NavBar from "./containers/NavBar";
 import Blogs from "./containers/Blogs";
-import UserContainer from "./show-pages/UserContainer";
 import { BlogShow, ProjectShow } from "./show-pages/Show";
 
 import Crabs from "./components/Crabs";
@@ -44,7 +44,7 @@ class App extends React.Component {
           <Route exact path="/browse" component={Browse} />
           <Route
             exact
-            path="/user"
+            path={`/users/${this.props.user.username}`}
             render={props => <User user={this.props.user} />}
           />
           <Route exact path="/login" component={Login} />
@@ -54,10 +54,17 @@ class App extends React.Component {
           <Route
             exact
             path="/users/:username"
-            render={props => (
-              <UserContainer location={this.props.history.location.pathname} />
-            )}
+            render={props => {
+              const username = props.location.pathname.split("/")[2];
+              const selectedUser = this.props.allUsers.find(
+                users => users.username === username
+              );
+              if (selectedUser) {
+                return <User user={selectedUser} />;
+              }
+            }}
           />
+
           <Route
             exact
             path="/blogs/:id"

@@ -15,7 +15,6 @@ class SearchField extends React.Component {
     this.setState({ isLoading: false, results: [], value: "" });
 
   handleResultSelect = (e, { result }) => {
-    // this.setState({ value: result.username });
     this.resetComponent();
   };
   handleSearchChange = (e, { value }) => {
@@ -59,7 +58,6 @@ class SearchField extends React.Component {
           results={results}
           resultRenderer={resultRenderer}
           value={value}
-          {...this.props}
         />
       </Menu.Item>
     );

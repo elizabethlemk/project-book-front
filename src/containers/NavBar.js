@@ -38,7 +38,7 @@ class NavBar extends React.Component {
               onClick={this.handleItemClick}
             >
               <Dropdown.Menu>
-                <Dropdown.Item as={NavLink} exact to="/user">
+                <Dropdown.Item as={NavLink} exact to={`/users/${username}`}>
                   Profile
                 </Dropdown.Item>
                 <Dropdown.Item as={NavLink} exact to="/settings">
