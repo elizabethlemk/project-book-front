@@ -18,9 +18,12 @@ You must have an account to be able to view the website.
 
 #### Built With 
 Ruby on Rails (Backend)
+
 React.js & Redux.js (Frontend)
+
 Semantic UI React
 
+AWS S3 
 
 #### Created by 
 Elizabeth Le
