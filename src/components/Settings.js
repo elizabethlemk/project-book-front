@@ -19,7 +19,7 @@ class Edit extends React.Component {
     last_name: this.props.user.last_name,
     email: this.props.user.email,
     birthday: this.props.user.birthday,
-    image: this.props.user.image
+    image: null
   };
 
   handleChange = (event, { name, value }) => {
@@ -38,7 +38,9 @@ class Edit extends React.Component {
     event.preventDefault();
     const formData = new FormData();
     const { first_name, last_name, email, birthday, image } = this.state;
-    // formData.append("user[image]", image);
+    if (image) {
+      formData.append("user[image]", image);
+    }
     formData.append("user[last_name]", last_name);
     formData.append("user[first_name]", first_name);
     formData.append("user[email]", email);

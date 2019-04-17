@@ -3,7 +3,7 @@ import { Button, Form, Icon, Ref, Table } from "semantic-ui-react";
 import { DragDropContext, Droppable } from "react-beautiful-dnd";
 import Note from "./Note";
 import { connect } from "react-redux";
-import { addComment, removeNote } from "../actions/projectAction";
+import { addComment, removeComment } from "../actions/projectAction";
 
 class Comments extends React.Component {
   state = {
@@ -61,7 +61,7 @@ class Comments extends React.Component {
 
   removeItem = (index, id) => {
     const newArr = this.state.notes.slice(1, index);
-    this.props.removeNote(id);
+    this.props.removeComment(id);
     this.setState({ notes: newArr });
   };
 
@@ -149,5 +149,5 @@ const mapStateToProps = state => {
 
 export default connect(
   mapStateToProps,
-  { addComment, removeNote }
+  { addComment, removeComment }
 )(Comments);

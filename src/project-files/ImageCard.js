@@ -1,11 +1,9 @@
 import React from "react";
 import { Button, Grid, Icon, Image, Modal } from "semantic-ui-react";
+import { deleteBoardImage } from "../actions/projectAction";
+import { connect } from "react-redux";
 
-const ImageCard = ({ image }) => {
-  const handleDelete = id => {
-    console.log("lets delete image #", id);
-  };
-
+const ImageCard = ({ image, deleteBoardImage, projectId }) => {
   return (
     <Modal
       trigger={
@@ -24,7 +22,7 @@ const ImageCard = ({ image }) => {
           basic
           color="red"
           inverted
-          onClick={() => handleDelete(image.id)}
+          onClick={() => deleteBoardImage(projectId, image.id)}
         >
           <Icon name="remove" /> Delete
         </Button>
@@ -33,4 +31,7 @@ const ImageCard = ({ image }) => {
   );
 };
 
-export default ImageCard;
+export default connect(
+  null,
+  { deleteBoardImage }
+)(ImageCard);

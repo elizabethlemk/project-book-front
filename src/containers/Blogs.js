@@ -1,9 +1,10 @@
 import React from "react";
 import BlogForm from "../blog-files/BlogForm";
 import { UserBlogCard, BlogPlaceholder } from "../blog-files/BlogCard";
-import { Button, Container, Grid, Item } from "semantic-ui-react";
+import { Button, Container } from "semantic-ui-react";
 import { connect } from "react-redux";
-import { loadBlogs } from "../actions/blogAction";
+import { deleteBlog, loadBlogs } from "../actions/blogAction";
+import { removeUserBlog } from "../actions/userAction";
 
 class Blogs extends React.Component {
   state = {
@@ -20,7 +21,7 @@ class Blogs extends React.Component {
 
   render() {
     return (
-      <Container style={{ marginTop: "4vh" }}>
+      <Container style={{ marginTop: "4vh", marginBottom: "4vh" }}>
         {this.state.active ? (
           <Button circular icon="x" onClick={this.handleClick} size="huge" />
         ) : (
@@ -39,7 +40,12 @@ class Blogs extends React.Component {
         <Container centered columns={3} style={{ marginTop: "6vh" }}>
           {this.props.blogs.length > 0 ? (
             this.props.blogs.map(blog => (
-              <UserBlogCard key={blog.id} blog={blog} />
+              <UserBlogCard
+                key={blog.id}
+                blog={blog}
+                removeUserBlog={this.props.removeUserBlog}
+                deleteBlog={this.props.deleteBlog}
+              />
             ))
           ) : (
             <BlogPlaceholder />
@@ -59,5 +65,5 @@ const mapStateToProps = state => {
 
 export default connect(
   mapStateToProps,
-  { loadBlogs }
+  { loadBlogs, removeUserBlog, deleteBlog }
 )(Blogs);

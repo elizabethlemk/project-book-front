@@ -10,8 +10,6 @@ import {
   Segment
 } from "semantic-ui-react";
 
-import { connect } from "react-redux";
-
 class User extends React.Component {
   render() {
     const {
@@ -54,31 +52,31 @@ class User extends React.Component {
               </Card>
             </Grid.Column>
             <Grid.Column verticalAlign="middle">
-              {blog_posts.length > 0 ? (
-                <Segment>
-                  <Header>Blogs: </Header>
+              <Segment>
+                <Header>Blogs: </Header>
+                {blog_posts.length > 0 ? (
                   <List divided>
                     {this.props.user.blog_posts.map(blog => (
                       <List.Item key={blog.id}>{blog.title}</List.Item>
                     ))}
                   </List>
-                </Segment>
-              ) : (
-                "No blogs!"
-              )}
+                ) : (
+                  "No blogs!"
+                )}
+              </Segment>
 
-              {projects.length > 0 ? (
-                <Segment>
-                  <Header>Projects: </Header>
+              <Segment>
+                <Header>Projects: </Header>
+                {projects.length > 0 ? (
                   <List divided>
                     {this.props.user.projects.map(project => (
                       <List.Item key={project.id}>{project.title}</List.Item>
                     ))}
                   </List>
-                </Segment>
-              ) : (
-                "No projects!"
-              )}
+                ) : (
+                  "No projects!"
+                )}
+              </Segment>
             </Grid.Column>
           </Grid>
         ) : null}
@@ -87,8 +85,4 @@ class User extends React.Component {
   }
 }
 
-const mapStateToProps = state => {
-  return { user: state.userReducer.user };
-};
-
-export default connect(mapStateToProps)(User);
+export default User;

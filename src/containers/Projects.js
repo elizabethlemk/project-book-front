@@ -53,9 +53,8 @@ class Projects extends React.PureComponent {
   };
 
   render() {
-    console.log(this.props.projects);
     return (
-      <div>
+      <div style={{ marginBottom: "4h" }}>
         <Menu attached="top" tabular>
           <Menu.Item id="project-header">Current Projects </Menu.Item>
           {this.renderProjects()}

@@ -30,6 +30,14 @@ const loadAllProjects = projects => {
   return { type: "LOAD_ALL_PROJECTS", payload: projects };
 };
 
+export const updateProject = projectObj => {
+  return { type: "UPDATE_PROJECT", payload: projectObj };
+};
+
+const removeProject = projectId => {
+  return { type: "REMOVE_PROJECT", payload: projectId };
+};
+
 const logIn = userObj => {
   return { type: "LOG_IN", payload: userObj };
 };
@@ -44,6 +52,10 @@ export const logInPending = () => {
 
 export const logInError = error => {
   return { type: "LOG_IN_ERROR", payload: error };
+};
+
+export const removeUserBlog = blogId => {
+  return { type: "REMOVE_BLOG", payload: blogId };
 };
 
 //---------------------//
@@ -154,5 +166,16 @@ export const getAllProjects = () => {
     return fetch("http://localhost:4000/api/v1/projects")
       .then(resp => resp.json())
       .then(json => dispatch(loadAllProjects(json)));
+  };
+};
+
+export const deleteProject = projectId => {
+  return dispatch => {
+    return fetch(`http://localhost:4000/api/v1/projects/${projectId}`, {
+      method: "DELETE",
+      headers: {
+        Authorization: `Bearer ${localStorage.token}`
+      }
+    }).then(resp => dispatch(removeProject(projectId)));
   };
 };

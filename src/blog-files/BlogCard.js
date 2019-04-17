@@ -1,7 +1,15 @@
 import React from "react";
 import { NavLink } from "react-router-dom";
-import { Card, Dropdown, Grid, Placeholder } from "semantic-ui-react";
+import {
+  Card,
+  Container,
+  Dropdown,
+  Grid,
+  Placeholder
+} from "semantic-ui-react";
 import ReactHtmlParser from "react-html-parser";
+
+import EditBlog from "../blog-files/EditBlog";
 
 export const BlogPlaceholder = () => {
   return (
@@ -38,30 +46,58 @@ export const BlogCard = ({ blog }) => {
   );
 };
 
-export const UserBlogCard = ({ blog }) => {
-  const handleEdit = () => {
-    console.log("edit blog");
+export class UserBlogCard extends React.Component {
+  state = {
+    active: false
   };
-  const handleDelete = () => {
-    console.log("delete blog");
+
+  handleShowEdit = () => {
+    this.setState({ active: true });
   };
-  return (
-    <Card key={blog.id} fluid>
-      <Card.Content>
-        <Dropdown item icon="setting" pointing="right" style={{ left: "98%" }}>
-          <Dropdown.Menu>
-            <Dropdown.Item onClick={() => handleEdit()}>
-              Edit Blog
-            </Dropdown.Item>
-            <Dropdown.Item onClick={() => handleDelete()}>
-              Delete Blog
-            </Dropdown.Item>
-          </Dropdown.Menu>
-        </Dropdown>
-        <Card.Header>{blog.title}</Card.Header>
-        <Card.Meta>Posted on {blog.created_at}</Card.Meta>
-        {ReactHtmlParser(blog.content)}
-      </Card.Content>
-    </Card>
-  );
-};
+  handleHideEdit = () => {
+    this.setState({ active: false });
+  };
+
+  handleDelete = () => {
+    const { blog, removeUserBlog, deleteBlog } = this.props;
+    removeUserBlog(blog.id);
+    deleteBlog(blog.id);
+  };
+
+  render() {
+    const { blog } = this.props;
+    console.log(this.state);
+    return (
+      <Card key={blog.id} fluid>
+        <Card.Content textAlign="center">
+          <Dropdown
+            item
+            icon="setting"
+            pointing="right"
+            style={{ left: "50%" }}
+          >
+            <Dropdown.Menu>
+              <Dropdown.Item onClick={this.handleShowEdit}>
+                Edit Blog
+              </Dropdown.Item>
+              <Dropdown.Item onClick={this.handleDelete}>
+                Delete Blog
+              </Dropdown.Item>
+            </Dropdown.Menu>
+          </Dropdown>
+          {this.state.active ? (
+            <EditBlog handleHideEdit={this.handleHideEdit} blog={blog} />
+          ) : (
+            <Container fluid>
+              <Card.Header>{blog.title}</Card.Header>
+              <Card.Meta>Posted on {blog.updated_at}</Card.Meta>
+              <Card.Description>
+                {ReactHtmlParser(blog.content)}
+              </Card.Description>
+            </Container>
+          )}
+        </Card.Content>
+      </Card>
+    );
+  }
+}

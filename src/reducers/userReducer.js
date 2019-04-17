@@ -32,13 +32,49 @@ const userReducer = (state = initialState, action) => {
     case "EDIT_USER":
       return { ...state, user: action.payload.user };
     case "REMOVE_USER":
-      debugger;
       localStorage.clear();
       const users = state.filter(user => user.id !== action.payload.user.id);
       return {
         ...state,
         user: { projects: [], blog_posts: [] },
         allUsers: users
+      };
+    case "UPDATE_PROJECT":
+      const updatedProj = state.user.projects.filter(
+        project => project.id !== action.payload.id
+      );
+      const allProj = state.allProjects.filter(
+        project => project.id !== action.payload.id
+      );
+      return {
+        ...state,
+        user: { ...state.user, projects: [updatedProj, action.payload] },
+        allProjects: [allProj, action.payload]
+      };
+    case "REMOVE_PROJECT":
+      console.log("made it into the user reducer");
+      const newProj = state.user.projects.filter(
+        project => project.id !== action.payload
+      );
+      const newAllProj = state.allProjects.filter(
+        project => project.id !== action.payload
+      );
+      return {
+        ...state,
+        user: { ...state.user, projects: newProj },
+        allProjects: newAllProj
+      };
+    case "REMOVE_BLOG":
+      const newArr = state.user.blog_posts.filter(
+        blog => blog.id !== action.payload
+      );
+      const newBlogArr = state.allBlogs.filter(
+        blog => blog.id !== action.payload
+      );
+      return {
+        ...state,
+        user: { ...state.user, blog_posts: newArr },
+        allBlogs: newBlogArr
       };
     case "LOAD_ALL_USERS":
       return { ...state, allUsers: action.payload };

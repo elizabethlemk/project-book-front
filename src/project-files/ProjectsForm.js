@@ -9,7 +9,12 @@ import {
 } from "semantic-ui-react";
 import Loaders from "../components/Loaders";
 import { connect } from "react-redux";
-import { changeCompleted } from "../actions/projectAction";
+import { deleteProject, updateProject } from "../actions/userAction";
+import {
+  changeCompleted,
+  resetProject,
+  updateTitle
+} from "../actions/projectAction";
 import Confetti from "react-dom-confetti";
 import Crabs from "../components/Crabs";
 const MoodBoard = React.lazy(() => import("./MoodBoard"));
@@ -20,9 +25,14 @@ const References = React.lazy(() => import("./References"));
 class ProjectsForm extends React.Component {
   state = {
     active: false,
-    title: this.props.project.title
+    title: ""
   };
 
+  componentDidUpdate = prevProps => {
+    if (this.props.project.id !== prevProps.project.id) {
+      this.setState({ title: this.props.project.title });
+    }
+  };
   handleToggle = event => {
     this.props.changeCompleted(
       !this.props.project.completed,
@@ -32,7 +42,6 @@ class ProjectsForm extends React.Component {
 
   handleShowForm = () => {
     this.setState({ active: true });
-    console.log("edit");
   };
 
   handleChange = event => {
@@ -40,16 +49,20 @@ class ProjectsForm extends React.Component {
   };
 
   handleSubmit = () => {
-    console.log("close the form");
     this.setState({ active: false });
-    // this.props.updateProject(this.props.project.id, this.state.title)
+    this.props.updateTitle(this.state.title, this.props.project.id);
+    // this is breaking the page for some reason
+    // this.props.updateProject({
+    //   ...this.props.project,
+    //   title: this.state.title
+    // });
   };
 
   handleDelete = () => {
-    console.log("Delete");
+    this.props.deleteProject(this.props.project.id);
+    this.props.resetProject();
   };
   render() {
-    console.log(this.props.project);
     return (
       <Grid columns="equal" centered style={{ zIndex: "2" }}>
         {this.props.project.title === "Crab Party" ? <Crabs /> : null}
@@ -84,6 +97,7 @@ class ProjectsForm extends React.Component {
             <Header>
               <Form onSubmit={this.handleSubmit}>
                 <Form.Input
+                  onChange={this.handleChange}
                   style={{ width: "50vw" }}
                   value={this.state.title}
                   placeholder={this.state.title}
@@ -126,5 +140,5 @@ const mapStateToProps = state => {
 
 export default connect(
   mapStateToProps,
-  { changeCompleted }
+  { changeCompleted, deleteProject, resetProject, updateTitle, updateProject }
 )(ProjectsForm);

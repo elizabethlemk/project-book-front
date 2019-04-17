@@ -57,7 +57,13 @@ class MoodBoard extends React.Component {
           {this.props.images.map(image => (
             <ProgressiveImage
               key={image.id}
-              render={() => <ImageCard image={image} key={image.id} />}
+              render={() => (
+                <ImageCard
+                  image={image}
+                  projectId={this.props.project.id}
+                  key={image.id}
+                />
+              )}
             />
           ))}
         </Grid>

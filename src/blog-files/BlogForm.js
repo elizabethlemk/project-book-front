@@ -5,52 +5,6 @@ import ClassicEditor from "@ckeditor/ckeditor5-build-classic";
 import { connect } from "react-redux";
 import { addBlog, loadBlogs } from "../actions/blogAction";
 
-const EditBlog = ({ blog }) => {
-  return (
-    <Form>
-      <Form.Input
-        label="Title"
-        value={blog.title}
-        name="title"
-        placeholder="Title of your blog post goes here!"
-      />
-
-      <CKEditor
-        editor={ClassicEditor}
-        data={blog.content}
-        config={{
-          toolbar: [
-            "bold",
-            "italic",
-            "link",
-            "bulletedList",
-            "numberedList",
-            "blockQuote",
-            "mediaEmbed"
-          ]
-        }}
-        onInit={editor => {
-          // You can store the "editor" and use when it is needed.
-          console.log("Editor is ready to use!", editor);
-        }}
-        onChange={(event, editor) => {
-          const data = editor.getData();
-          console.log({ event, editor, data });
-        }}
-        onBlur={editor => {
-          console.log("Blur.", editor);
-        }}
-        onFocus={editor => {
-          console.log("Focus.", editor);
-        }}
-      />
-      <Button type="submit" style={{ marginTop: "1rem" }}>
-        Submit
-      </Button>
-    </Form>
-  );
-};
-
 class BlogForm extends React.Component {
   state = {
     user_id: this.props.user.id,
