@@ -10,9 +10,12 @@ import {
   Menu,
   Segment
 } from "semantic-ui-react";
+import { BlogCard } from "../blog-files/BlogCard";
+import ProjectTabs from "../project-files/ProjectTabs";
+import { ProjectContainer } from "../project-files/ProjectContainer";
 
 class User extends React.Component {
-  state = { activeItem: "blogs" };
+  state = { activeItem: "projects" };
 
   handleItemClick = (e, { name }) => this.setState({ activeItem: name });
 
@@ -33,28 +36,18 @@ class User extends React.Component {
       if (activeItem === "blogs") {
         return (
           <Segment>
-            <Header>Blogs: </Header>
-            {blog_posts.length > 0 ? (
-              <List divided>
-                {this.props.user.blog_posts.map(blog => (
-                  <List.Item key={blog.id}>{blog.title}</List.Item>
-                ))}
-              </List>
-            ) : (
-              "No blogs!"
-            )}
+            {blog_posts.length > 0
+              ? this.props.user.blog_posts.map(blog => (
+                  <BlogCard key={blog.id} blog={blog} />
+                ))
+              : "No blogs!"}
           </Segment>
         );
       } else if (activeItem === "projects") {
         return (
           <Segment>
-            <Header>Projects: </Header>
             {projects.length > 0 ? (
-              <List divided>
-                {this.props.user.projects.map(project => (
-                  <List.Item key={project.id}>{project.title}</List.Item>
-                ))}
-              </List>
+              <ProjectTabs projects={projects} />
             ) : (
               "No projects!"
             )}
@@ -63,7 +56,7 @@ class User extends React.Component {
       }
     };
     return (
-      <Container id="user-container" fluid style={{ padding: "5vw" }}>
+      <Container id="user-container" fluid style={{ padding: "3vw" }}>
         {Object.keys(this.props.user).length > 0 ? (
           <Grid columns={2} centered>
             <Grid.Column width={4}>
@@ -98,13 +91,13 @@ class User extends React.Component {
             <Grid.Column width={2}>
               <Menu fluid vertical tabular="right">
                 <Menu.Item
-                  name="blogs"
-                  active={activeItem === "blogs"}
+                  name="projects"
+                  active={activeItem === "projects"}
                   onClick={this.handleItemClick}
                 />
                 <Menu.Item
-                  name="projects"
-                  active={activeItem === "projects"}
+                  name="blogs"
+                  active={activeItem === "blogs"}
                   onClick={this.handleItemClick}
                 />
               </Menu>

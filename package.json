@@ -26,6 +26,7 @@
     "react-router-transition-switch": "^1.1.1",
     "react-scripts": "2.1.8",
     "react-slide-animation-router": "^2.0.1",
+    "react-text-loop": "^2.0.1",
     "react-transitions": "^1.0.0",
     "react-use": "^8.1.2",
     "redux": "^4.0.1",

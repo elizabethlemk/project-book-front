@@ -42,11 +42,6 @@ class App extends React.Component {
           <Route exact path="/projects" component={Projects} />
           <Route exact path="/blogs" component={Blogs} />
           <Route exact path="/browse" component={Browse} />
-          <Route
-            exact
-            path={`/users/${this.props.user.username}`}
-            render={props => <User user={this.props.user} />}
-          />
           <Route exact path="/login" component={Login} />
           <Route exact path="/signup" component={Signup} />
           <Route exact path="/settings" component={Settings} />
@@ -65,16 +60,18 @@ class App extends React.Component {
             }}
           />
 
-          <Route
-            exact
-            path="/blogs/:id"
-            render={props => <BlogShow props={this.props} />}
-          />
-          <Route
-            exact
-            path="/projects/:id"
-            render={props => <ProjectShow props={this.props} />}
-          />
+          {
+            // <Route
+            //    exact
+            //    path="/blogs/:id"
+            //    render={props => <BlogShow props={this.props} />}
+            //  />
+            //  <Route
+            //    exact
+            //    path="/projects/:id"
+            //    render={props => <ProjectShow props={this.props} />}
+            //  />
+          }
           <Route path="/" component={Crabs} />
         </Switch>
       </div>
