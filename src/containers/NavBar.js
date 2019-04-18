@@ -121,7 +121,7 @@ class NavBar extends React.Component {
         />{" "}
         <Menu.Menu position="right">
           <Header as="h1" id="middle">
-            <Sparkle color="random" flickerSpeed={"slowest"} /> Project Book{" "}
+            Project Book{" "}
           </Header>
         </Menu.Menu>
         {loginOptions}

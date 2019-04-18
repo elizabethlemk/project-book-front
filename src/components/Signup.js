@@ -62,7 +62,7 @@ class Signup extends React.Component {
         console.log(this.props.error);
         window.alert("Invalid user credentials");
       }
-    }, 500);
+    }, 1000);
   };
 
   render() {

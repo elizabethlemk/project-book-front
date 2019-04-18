@@ -87,8 +87,9 @@ class References extends React.Component {
                               <Table.Row
                                 {...provided.draggableProps}
                                 {...provided.dragHandleProps}
+                                key={link.id}
                               >
-                                <Table.Cell>
+                                <Table.Cell key={link.id}>
                                   <MicrolinkCard url={link.url} />
                                 </Table.Cell>
                               </Table.Row>

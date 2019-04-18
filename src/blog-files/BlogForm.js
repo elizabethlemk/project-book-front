@@ -24,7 +24,6 @@ class BlogForm extends React.Component {
       title: "",
       content: "Write here about anything you want!"
     });
-    this.props.loadBlogs(this.props.user.id);
     this.props.handleClick();
   };
 

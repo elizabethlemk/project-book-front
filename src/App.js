@@ -15,16 +15,16 @@ import { loadBlogs } from "./actions/blogAction";
 
 import Home from "./containers/Home";
 import Browse from "./containers/Browse";
-
-import User from "./containers/User";
-import Projects from "./containers/Projects";
 import NavBar from "./containers/NavBar";
-import Blogs from "./containers/Blogs";
-
-import Crabs from "./components/Crabs";
 import Login from "./components/Login";
-import Settings from "./components/Settings";
+import Loaders from "./components/Loaders";
 import Signup from "./components/Signup";
+
+const User = React.lazy(() => import("./containers/User"));
+const Projects = React.lazy(() => import("./containers/Projects"));
+const Blogs = React.lazy(() => import("./containers/Blogs"));
+const Crabs = React.lazy(() => import("./components/Crabs"));
+const Settings = React.lazy(() => import("./components/Settings"));
 
 class App extends React.Component {
   componentDidMount = () => {
@@ -44,12 +44,39 @@ class App extends React.Component {
         <NavBar />
         <Switch component={Fader}>
           <Route exact path="/home" component={Home} />
-          <Route exact path="/projects" component={Projects} />
-          <Route exact path="/blogs" component={Blogs} />
+          <Route
+            exact
+            path="/projects"
+            render={() => (
+              <React.Suspense fallback={<Loaders />}>
+                {" "}
+                <Projects />
+              </React.Suspense>
+            )}
+          />
+          <Route
+            exact
+            path="/blogs"
+            render={() => (
+              <React.Suspense fallback={<Loaders />}>
+                {" "}
+                <Blogs />
+              </React.Suspense>
+            )}
+          />
           <Route exact path="/browse" component={Browse} />
           <Route exact path="/login" component={Login} />
           <Route exact path="/signup" component={Signup} />
-          <Route exact path="/settings" component={Settings} />
+          <Route
+            exact
+            path="/settings"
+            render={() => (
+              <React.Suspense fallback={<Loaders />}>
+                {" "}
+                <Settings />
+              </React.Suspense>
+            )}
+          />
           <Route exact path="/logout" component={Home} />
           <Route
             exact
@@ -60,24 +87,25 @@ class App extends React.Component {
                 users => users.username === username
               );
               if (selectedUser) {
-                return <User user={selectedUser} />;
+                return (
+                  <React.Suspense fallback={<Loaders />}>
+                    {" "}
+                    <User user={selectedUser} />
+                  </React.Suspense>
+                );
               }
             }}
           />
 
-          {
-            // <Route
-            //    exact
-            //    path="/blogs/:id"
-            //    render={props => <BlogShow props={this.props} />}
-            //  />
-            //  <Route
-            //    exact
-            //    path="/projects/:id"
-            //    render={props => <ProjectShow props={this.props} />}
-            //  />
-          }
-          <Route path="/" component={Crabs} />
+          <Route
+            path="/"
+            render={() => (
+              <React.Suspense fallback={<Loaders />}>
+                {" "}
+                <Crabs />
+              </React.Suspense>
+            )}
+          />
         </Switch>
       </div>
     );

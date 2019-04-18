@@ -1,10 +1,9 @@
 import React from "react";
-import { Container, Grid, Header, Segment } from "semantic-ui-react";
+import { Container, Header, Segment } from "semantic-ui-react";
 
 import Slider from "react-slick";
 import { connect } from "react-redux";
 
-import { UserCard } from "../components/UserCard";
 import { BlogCard } from "../blog-files/BlogCard";
 import { ProjectContainer } from "../project-files/ProjectContainer";
 import Loaders from "../components/Loaders";
@@ -47,7 +46,7 @@ class Browse extends React.Component {
         {allProjects.length > 0 ? (
           <Slider {...userSettings}>
             {allProjects.map(project => (
-              <Segment>
+              <Segment key={project.id}>
                 <ProjectContainer key={project.id} project={project} />
               </Segment>
             ))}
