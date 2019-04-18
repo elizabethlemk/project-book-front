@@ -1,5 +1,6 @@
 import React from "react";
 import { NavLink } from "react-router-dom";
+import Sparkle from "react-sparkle";
 import { Button, Dropdown, Header, Icon, Menu } from "semantic-ui-react";
 import SearchField from "./SearchField";
 
@@ -120,8 +121,7 @@ class NavBar extends React.Component {
         />{" "}
         <Menu.Menu position="right">
           <Header as="h1" id="middle">
-            {" "}
-            Project Book{" "}
+            <Sparkle color="random" flickerSpeed={"slowest"} /> Project Book{" "}
           </Header>
         </Menu.Menu>
         {loginOptions}

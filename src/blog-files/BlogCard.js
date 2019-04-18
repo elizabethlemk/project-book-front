@@ -93,7 +93,7 @@ export class UserBlogCard extends React.Component {
               <Card.Meta>Posted on {blog.updated_at}</Card.Meta>
               <Card.Description
                 textAlign="left"
-                style={{ paddingLeft: "5rem" }}
+                style={{ paddingLeft: "5rem", paddingBottom: "3rem" }}
               >
                 {ReactHtmlParser(blog.content)}
               </Card.Description>
