@@ -17,9 +17,7 @@ const projectReducer = (state = initialState, action) => {
         images: action.payload.project.images,
         comments: action.payload.project.notes
       };
-    case "UPDATE_TITLE":
-      console.log(action.payload);
-      return state;
+
     case "UPDATE_PROJECT":
       return {
         ...state,
@@ -51,7 +49,7 @@ const projectReducer = (state = initialState, action) => {
         ...state,
         comments: [...state.comments, action.payload.note]
       };
-    case "REMOVE_COMMENT":
+    case "DELETE_COMMENT":
       const newArr = state.comments.filter(
         comment => comment.id !== action.payload
       );
@@ -65,10 +63,13 @@ const projectReducer = (state = initialState, action) => {
         links: [...state.links, action.payload.link]
       };
     case "CREATE_IMAGE":
-      console.log(action.payload.project);
       return {
         ...state,
-        images: [...state.images, action.payload.project.images]
+        project: action.payload.project,
+        colors: action.payload.project.colors,
+        links: action.payload.project.links,
+        images: action.payload.project.images,
+        comments: action.payload.project.notes
       };
     case "REMOVE_IMAGE":
       const newImgs = state.images.filter(image => image.id !== action.payload);

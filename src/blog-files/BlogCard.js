@@ -37,7 +37,7 @@ export const BlogCard = ({ blog }) => {
             by <NavLink to={`/users/${blog.user}`}>{blog.user}</NavLink>
           </Card.Meta>
           <Card.Meta>Posted on {blog.created_at}</Card.Meta>
-          <Card.Description textAlign="left">
+          <Card.Description textAlign="left" style={{ paddingLeft: "1rem" }}>
             {ReactHtmlParser(blog.content)}
           </Card.Description>
         </Card.Content>
@@ -91,7 +91,10 @@ export class UserBlogCard extends React.Component {
             <Container fluid>
               <Card.Header>{blog.title}</Card.Header>
               <Card.Meta>Posted on {blog.updated_at}</Card.Meta>
-              <Card.Description>
+              <Card.Description
+                textAlign="left"
+                style={{ paddingLeft: "5rem" }}
+              >
                 {ReactHtmlParser(blog.content)}
               </Card.Description>
             </Container>

@@ -51,6 +51,7 @@ export const logInPending = () => {
 };
 
 export const logInError = error => {
+  console.log(error);
   return { type: "LOG_IN_ERROR", payload: error };
 };
 
@@ -70,8 +71,14 @@ export const addUser = formData => {
     })
       .then(resp => resp.json())
       .then(json => {
-        dispatch(createUser(json));
-      });
+        if (json.error) {
+          localStorage.removeItem("token");
+          dispatch(logInError(json));
+        } else {
+          dispatch(createUser(json));
+        }
+      })
+      .catch(error => console.log(error));
   };
 };
 

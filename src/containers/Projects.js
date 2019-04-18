@@ -59,7 +59,9 @@ class Projects extends React.PureComponent {
           <Menu.Item id="project-header">Current Projects </Menu.Item>
           {this.renderProjects()}
 
-          {this.state.showForm ? <CreateProject /> : null}
+          {this.state.showForm ? (
+            <CreateProject handleShow={this.handleShow} />
+          ) : null}
           <Menu.Item>
             <Button animated onClick={this.handleShow}>
               {this.state.showForm ? (

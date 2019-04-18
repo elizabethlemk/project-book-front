@@ -23,7 +23,7 @@ class Login extends React.Component {
       if (localStorage.token) {
         this.props.history.push("/home");
       } else {
-        this.props.history.push("/login");
+        window.alert("Invalid user credentials");
       }
     }, 500);
   };

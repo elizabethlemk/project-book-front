@@ -52,10 +52,10 @@ class ProjectsForm extends React.Component {
     this.setState({ active: false });
     this.props.updateTitle(this.state.title, this.props.project.id);
     // this is breaking the page for some reason
-    // this.props.updateProject({
-    //   ...this.props.project,
-    //   title: this.state.title
-    // });
+    this.props.updateProject({
+      ...this.props.project,
+      title: this.state.title
+    });
   };
 
   handleDelete = () => {

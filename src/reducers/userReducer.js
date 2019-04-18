@@ -39,7 +39,17 @@ const userReducer = (state = initialState, action) => {
         user: { projects: [], blog_posts: [] },
         allUsers: users
       };
+    case "CREATE_PROJECT":
+      return {
+        ...state,
+        user: {
+          ...state.user,
+          projects: [...state.user.projects, action.payload.project]
+        },
+        allProjects: [...state.allProjects, action.payload.project]
+      };
     case "UPDATE_PROJECT":
+      console.log("SOS");
       const updatedProj = state.user.projects.filter(
         project => project.id !== action.payload.id
       );
@@ -48,11 +58,10 @@ const userReducer = (state = initialState, action) => {
       );
       return {
         ...state,
-        user: { ...state.user, projects: [updatedProj, action.payload] },
-        allProjects: [allProj, action.payload]
+        user: { ...state.user, projects: [...updatedProj, action.payload] },
+        allProjects: [...allProj, action.payload]
       };
     case "REMOVE_PROJECT":
-      console.log("made it into the user reducer");
       const newProj = state.user.projects.filter(
         project => project.id !== action.payload
       );

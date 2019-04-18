@@ -2,7 +2,6 @@ import React from "react";
 import { Button, Form, Menu } from "semantic-ui-react";
 import { connect } from "react-redux";
 import { addProject, loadProject } from "../actions/projectAction";
-import { checkToken } from "../actions/userAction";
 
 class CreateProject extends React.Component {
   state = {
@@ -17,8 +16,8 @@ class CreateProject extends React.Component {
       completed: false
     };
     this.props.addProject(projectObj);
-    this.props.checkToken();
     this.setState({ title: "" });
+    this.props.handleShow();
   };
 
   handleChange = event => {
@@ -51,5 +50,5 @@ const mapStateToProps = state => {
 
 export default connect(
   mapStateToProps,
-  { addProject, checkToken, loadProject }
+  { addProject, loadProject }
 )(CreateProject);

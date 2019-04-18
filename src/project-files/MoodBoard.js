@@ -21,7 +21,6 @@ class MoodBoard extends React.Component {
     const formData = new FormData();
     formData.append("project[images]", this.state.image);
     this.props.addBoardImage(formData, this.props.project.id);
-    // this.props.loadProject(this.props.project.id);
     this.setState({
       image: []
     });

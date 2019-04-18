@@ -14,9 +14,6 @@ export const updateProject = projectObj => {
   return { type: "UPDATE_PROJECT", payload: projectObj };
 };
 
-const updateProjectTitle = projectObj => {
-  return { type: "UPDATE_TITLE", payload: projectObj };
-};
 const getProject = projectObj => {
   return { type: "GET_PROJECT", payload: projectObj };
 };
@@ -231,7 +228,7 @@ export const updateTitle = (newTitle, projectId) => {
     })
       .then(resp => resp.json())
       .then(json => {
-        dispatch(updateProjectTitle(json));
+        dispatch(updateProject(json));
       });
   };
 };

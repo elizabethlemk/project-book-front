@@ -35,7 +35,7 @@ class Blogs extends React.Component {
             Add a new blog post
           </div>
         )}
-        {this.state.active ? <BlogForm /> : null}
+        {this.state.active ? <BlogForm handleClick={this.handleClick} /> : null}
 
         <Container centered="true" columns={3} style={{ marginTop: "6vh" }}>
           {this.props.blogs.length > 0 ? (
