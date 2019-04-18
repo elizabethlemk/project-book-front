@@ -65,6 +65,7 @@ const projectReducer = (state = initialState, action) => {
         links: [...state.links, action.payload.link]
       };
     case "CREATE_IMAGE":
+      console.log(action.payload.project);
       return {
         ...state,
         images: [...state.images, action.payload.project.images]

@@ -1,18 +1,7 @@
 import React from "react";
-import {
-  Card,
-  Container,
-  Grid,
-  Header,
-  Icon,
-  Image,
-  List,
-  Menu,
-  Segment
-} from "semantic-ui-react";
+import { Card, Container, Grid, Icon, Image, Menu } from "semantic-ui-react";
 import { BlogCard } from "../blog-files/BlogCard";
 import ProjectTabs from "../project-files/ProjectTabs";
-import { ProjectContainer } from "../project-files/ProjectContainer";
 
 class User extends React.Component {
   state = { activeItem: "projects" };
@@ -34,24 +23,16 @@ class User extends React.Component {
     } = this.props.user;
     const showStuff = () => {
       if (activeItem === "blogs") {
-        return (
-          <Segment>
-            {blog_posts.length > 0
-              ? this.props.user.blog_posts.map(blog => (
-                  <BlogCard key={blog.id} blog={blog} />
-                ))
-              : "No blogs!"}
-          </Segment>
-        );
+        return blog_posts.length > 0
+          ? this.props.user.blog_posts.map(blog => (
+              <BlogCard key={blog.id} blog={blog} />
+            ))
+          : "No blogs!";
       } else if (activeItem === "projects") {
-        return (
-          <Segment>
-            {projects.length > 0 ? (
-              <ProjectTabs projects={projects} />
-            ) : (
-              "No projects!"
-            )}
-          </Segment>
+        return projects.length > 0 ? (
+          <ProjectTabs projects={projects} />
+        ) : (
+          "No projects!"
         );
       }
     };

@@ -29,7 +29,7 @@ export const BlogPlaceholder = () => {
 
 export const BlogCard = ({ blog }) => {
   return (
-    <Grid.Row style={{ paddingBottom: "1rem" }}>
+    <Grid.Row>
       <Card key={blog.id} fluid>
         <Card.Content>
           <Card.Header>{blog.title}</Card.Header>

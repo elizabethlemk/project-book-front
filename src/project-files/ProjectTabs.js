@@ -1,10 +1,9 @@
 import React from "react";
-import { Button, Icon, Menu, Segment, Tab } from "semantic-ui-react";
-import Loaders from "../components/Loaders";
+import { Tab } from "semantic-ui-react";
 import { ProjectContainer } from "./ProjectContainer";
 
 export default class ProjectTabs extends React.Component {
-  state = { activeIndex: 1 };
+  state = { activeIndex: 0 };
   makePanes = () => {
     let panes = [];
     this.props.projects.map(project =>

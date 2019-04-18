@@ -1,7 +1,6 @@
 import React from "react";
 import ImageCard from "./ImageCard";
 import { Button, Container, Form, Grid, Table } from "semantic-ui-react";
-import ProgressiveImage from "react-progressive-image-loading";
 import { connect } from "react-redux";
 import { addBoardImage, loadProject } from "../actions/projectAction";
 
@@ -18,13 +17,16 @@ class MoodBoard extends React.Component {
 
   handleSubmit = event => {
     event.preventDefault();
+    event.target.children[0].firstElementChild.firstElementChild.value = null;
     const formData = new FormData();
     formData.append("project[images]", this.state.image);
     this.props.addBoardImage(formData, this.props.project.id);
-    this.props.loadProject(this.props.project.id);
+    // this.props.loadProject(this.props.project.id);
     this.setState({
       image: []
     });
+
+    console.log("submitted");
   };
 
   render() {
@@ -44,7 +46,6 @@ class MoodBoard extends React.Component {
                   <Form.Input
                     type="file"
                     name="image"
-                    multiple
                     onChange={this.handleFile}
                   />
                   <Button type="submit">Submit</Button>
@@ -55,15 +56,10 @@ class MoodBoard extends React.Component {
         </Table>
         <Grid columns={3}>
           {this.props.images.map(image => (
-            <ProgressiveImage
+            <ImageCard
+              image={image}
+              projectId={this.props.project.id}
               key={image.id}
-              render={() => (
-                <ImageCard
-                  image={image}
-                  projectId={this.props.project.id}
-                  key={image.id}
-                />
-              )}
             />
           ))}
         </Grid>

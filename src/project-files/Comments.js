@@ -60,7 +60,7 @@ class Comments extends React.Component {
   };
 
   removeItem = (index, id) => {
-    const newArr = this.state.notes.slice(1, index);
+    const newArr = this.state.notes.filter(note => note.id !== id);
     this.props.removeComment(id);
     this.setState({ notes: newArr });
   };

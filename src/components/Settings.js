@@ -36,6 +36,7 @@ class Edit extends React.Component {
 
   handleSubmit = event => {
     event.preventDefault();
+    event.target.children[1].children[1].firstElementChild.value = null;
     const formData = new FormData();
     const { first_name, last_name, email, birthday, image } = this.state;
     if (image) {
@@ -47,6 +48,7 @@ class Edit extends React.Component {
     formData.append("user[birthday]", birthday);
 
     this.props.updateUser(this.props.user.id, formData);
+    this.setState({ image: null });
   };
   render() {
     const { first_name, last_name, email, birthday } = this.state;

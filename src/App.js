@@ -15,7 +15,7 @@ import User from "./containers/User";
 import Projects from "./containers/Projects";
 import NavBar from "./containers/NavBar";
 import Blogs from "./containers/Blogs";
-import { BlogShow, ProjectShow } from "./show-pages/Show";
+// import { BlogShow, ProjectShow } from "./show-pages/Show";
 
 import Crabs from "./components/Crabs";
 import Login from "./components/Login";

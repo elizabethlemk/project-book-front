@@ -7,15 +7,15 @@ const ImageCard = ({ image, deleteBoardImage, projectId }) => {
   return (
     <Modal
       trigger={
-        <Grid.Column key={image.id}>
-          <Image src={image.img_url} />
+        <Grid.Column>
+          <Image key={image.id} src={image.img_url} />
         </Grid.Column>
       }
       basic
       closeIcon
     >
       <Modal.Content>
-        <Image src={image.img_url} fluid />
+        <Image key={image.id} src={image.img_url} fluid />
       </Modal.Content>
       <Modal.Actions>
         <Button
