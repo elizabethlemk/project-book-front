@@ -55,12 +55,14 @@ class Signup extends React.Component {
     formData.append("user[username]", username);
 
     this.props.addUser(formData);
-    if (localStorage.token) {
-      this.props.history.push("/home");
-    } else {
-      console.log(this.props.error);
-      window.alert("Invalid user credentials");
-    }
+    setTimeout(() => {
+      if (localStorage.token) {
+        this.props.history.push("/home");
+      } else {
+        console.log(this.props.error);
+        window.alert("Invalid user credentials");
+      }
+    }, 500);
   };
 
   render() {

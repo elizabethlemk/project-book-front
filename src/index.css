@@ -1,5 +1,6 @@
 @import url("https://fonts.googleapis.com/css?family=Arbutus+Slab|Courgette|Homemade+Apple|Spectral+SC|Carrois+Gothic+SC");
-
+@import "~slick-carousel/slick/slick.css";
+@import "~slick-carousel/slick/slick-theme.css";
 #lizzy {
   letter-spacing: 0.5em;
   text-decoration: none;

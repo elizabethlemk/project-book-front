@@ -1,38 +1,60 @@
 import React from "react";
-import { Container, Grid, Header } from "semantic-ui-react";
+import { Container, Grid, Header, Segment } from "semantic-ui-react";
+
+import Slider from "react-slick";
 import { connect } from "react-redux";
 
 import { UserCard } from "../components/UserCard";
 import { BlogCard } from "../blog-files/BlogCard";
+import { ProjectContainer } from "../project-files/ProjectContainer";
 import Loaders from "../components/Loaders";
 
-class Forum extends React.Component {
+class Browse extends React.Component {
   render() {
-    const { allBlogs, allUsers } = this.props;
+    console.log(this.props);
+    const { allBlogs, allProjects } = this.props;
+    const settings = {
+      dots: true,
+      infinite: true,
+      slidesToShow: 3,
+      slidesToScroll: 1,
+      autoplay: true,
+      autoplaySpeed: 2000,
+      cssEase: "linear"
+    };
+    const userSettings = {
+      dots: true,
+      infinite: true,
+      slidesToShow: 1,
+      slidesToScroll: 1,
+      autoplay: true,
+      autoplaySpeed: 2000,
+      cssEase: "linear"
+    };
     return (
-      <Container>
-        <Grid columns={2}>
-          <Grid columns={2} centered>
-            <Grid.Row>
-              <Header>Users</Header>
-            </Grid.Row>
-            {allUsers.length > 0 ? (
-              allUsers.map(user => <UserCard key={user.id} user={user} />)
-            ) : (
-              <Loaders />
-            )}
-          </Grid>
-          <Grid centered columns={1}>
-            <Grid.Row>
-              <Header>Blogs</Header>
-            </Grid.Row>
-            {allBlogs.length > 0 ? (
-              allBlogs.map(blog => <BlogCard key={blog.id} blog={blog} />)
-            ) : (
-              <Loaders />
-            )}
-          </Grid>
-        </Grid>
+      <Container fluid justify="middle">
+        <Header textAlign="center">Blogs</Header>
+        {allBlogs.length > 0 ? (
+          <Slider {...settings}>
+            {allBlogs.map(blog => (
+              <BlogCard key={blog.id} blog={blog} />
+            ))}
+          </Slider>
+        ) : (
+          <Loaders />
+        )}
+        <Header textAlign="center">Projects</Header>
+        {allProjects.length > 0 ? (
+          <Slider {...userSettings}>
+            {allProjects.map(project => (
+              <Segment>
+                <ProjectContainer key={project.id} project={project} />
+              </Segment>
+            ))}
+          </Slider>
+        ) : (
+          <Loaders />
+        )}
       </Container>
     );
   }
@@ -40,9 +62,9 @@ class Forum extends React.Component {
 
 const mapStateToProps = state => {
   return {
-    allUsers: state.userReducer.allUsers,
+    allProjects: state.userReducer.allProjects,
     allBlogs: state.userReducer.allBlogs
   };
 };
 
-export default connect(mapStateToProps)(Forum);
+export default connect(mapStateToProps)(Browse);

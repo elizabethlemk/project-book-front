@@ -5,7 +5,12 @@ import Fader from "react-fader";
 import "./App.css";
 
 import { connect } from "react-redux";
-import { checkToken, getAllUsers, getAllBlogs } from "./actions/userAction";
+import {
+  checkToken,
+  getAllUsers,
+  getAllBlogs,
+  getAllProjects
+} from "./actions/userAction";
 import { loadBlogs } from "./actions/blogAction";
 
 import Home from "./containers/Home";
@@ -15,7 +20,6 @@ import User from "./containers/User";
 import Projects from "./containers/Projects";
 import NavBar from "./containers/NavBar";
 import Blogs from "./containers/Blogs";
-// import { BlogShow, ProjectShow } from "./show-pages/Show";
 
 import Crabs from "./components/Crabs";
 import Login from "./components/Login";
@@ -25,6 +29,7 @@ import Signup from "./components/Signup";
 class App extends React.Component {
   componentDidMount = () => {
     this.props.getAllUsers();
+    this.props.getAllProjects();
     this.props.getAllBlogs();
     if (localStorage.token) {
       this.props.checkToken();
@@ -85,5 +90,5 @@ const mapStateToProps = state => {
 
 export default connect(
   mapStateToProps,
-  { checkToken, loadBlogs, getAllBlogs, getAllUsers }
+  { checkToken, loadBlogs, getAllBlogs, getAllUsers, getAllProjects }
 )(withRouter(App));
