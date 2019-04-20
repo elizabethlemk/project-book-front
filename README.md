@@ -3,7 +3,8 @@
 ###### A place for all your ideas, projects, and inspiration
 
 You must have an account to be able to view the website.
-Alt-H1 Demo Video
+Demo Video
+======
 
 (https://youtu.be/dg2nIqLr84M)
 
