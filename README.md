@@ -28,8 +28,10 @@ https://youtu.be/dg2nIqLr84M
 Run
 ======
 
-```npm install```
-```npm start ```
+1. ```npm install```
+
+
+2. ```npm start ```
 
 #### Built With 
 Ruby on Rails (Backend)
