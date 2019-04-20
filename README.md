@@ -16,7 +16,7 @@ Demo Video
 https://youtu.be/dg2nIqLr84M
 
 
- ![alt text](https://github.com/elizabethlemk/project-book-front/blob/master/public/Screen%20Shot%202019-04-10%20at%203.13.16%20PM.png?raw=true)
+ ![alt text](https://media.giphy.com/media/xUoCMMcqVeWIhAsnr9/giphy.gif)
 
 ![alt text](https://github.com/elizabethlemk/project-book-front/blob/master/public/Screen%20Shot%202019-04-10%20at%203.13.28%20PM.png?raw=true)
  
