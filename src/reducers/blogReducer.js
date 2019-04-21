@@ -12,10 +12,10 @@ const blogReducer = (state = initialState, action) => {
       const newArr = state.blogs.filter(blog => blog.id !== action.payload);
       return { ...state, blogs: newArr };
     case "EDIT_BLOG":
-      const index = state.blogs.indexOf(
+      let index = state.blogs.indexOf(
         state.blogs.find(blog => blog.id === action.payload.id)
       );
-      const temp = [...state.blogs];
+      let temp = [...state.blogs];
       temp[index] = action.payload;
       return { ...state, blogs: temp };
     default:

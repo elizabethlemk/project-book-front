@@ -3,24 +3,28 @@ import { Button, Form, Icon, Ref, Table } from "semantic-ui-react";
 import { DragDropContext, Droppable } from "react-beautiful-dnd";
 import Note from "./Note";
 import { connect } from "react-redux";
-import { addComment, removeComment } from "../actions/projectAction";
+import {
+  addComment,
+  removeComment,
+  updateComment
+} from "../actions/projectAction";
 
 class Comments extends React.Component {
   state = {
     active: false,
     comment: null,
-    notes: []
+    notes: this.props.comments
   };
 
-  componentDidUpdate = prevProps => {
-    if (this.props.comments !== prevProps.comments) {
-      this.setState({ notes: this.props.comments });
-    }
-  };
+  // componentDidUpdate = prevProps => {
+  //   if (this.props.comments !== prevProps.comments) {
+  //     this.setState({ notes: this.props.comments });
+  //   }
+  // };
 
   onDragEnd = result => {
     // Does the dragging magic. Result is an object created by DND
-    const { destination, source } = result;
+    const { destination, source, draggableId } = result;
     console.log(result);
     if (!destination) {
       return;
@@ -31,13 +35,16 @@ class Comments extends React.Component {
     ) {
       return;
     }
-
-    const notes = [...this.state.notes];
-    const note = this.state.notes[source.index];
+    const notes = [...this.props.comments];
+    const note = this.props.comments[source.index];
     notes.splice(source.index, 1);
     notes.splice(destination.index, 0, note);
     // This saves the order of the comments in the array
-    this.setState({ notes: notes });
+    this.setState({ notes: notes }, () =>
+      this.state.notes.map((note, index) =>
+        this.props.updateComment(note.id, index)
+      )
+    );
   };
 
   handleShow = () => {
@@ -53,7 +60,7 @@ class Comments extends React.Component {
     const commentObj = {
       user_id: this.props.user.id,
       project_id: this.props.project.id,
-      idx: this.props.comments.length - 1,
+      idx: this.props.comments.length,
       comment: this.state.comment
     };
     this.props.addComment(commentObj);
@@ -86,8 +93,8 @@ class Comments extends React.Component {
             {(provided, snapshot) => (
               <Ref innerRef={provided.innerRef}>
                 <Table.Body {...provided.droppableProps}>
-                  {this.state.notes.length > 0
-                    ? this.state.notes.map((note, index) => (
+                  {this.props.comments.length > 0
+                    ? this.props.comments.map((note, index) => (
                         <Note
                           index={index}
                           note={note}
@@ -150,5 +157,5 @@ const mapStateToProps = state => {
 
 export default connect(
   mapStateToProps,
-  { addComment, removeComment }
+  { addComment, removeComment, updateComment }
 )(Comments);

@@ -22,6 +22,11 @@ const createComment = commentObj => {
   return { type: "CREATE_COMMENT", payload: commentObj };
 };
 
+const editNote = noteObj => {
+  console.log(noteObj);
+  return { type: "EDIT_NOTE", payload: noteObj };
+};
+
 const deleteComment = noteId => {
   return { type: "DELETE_COMMENT", payload: noteId };
 };
@@ -204,19 +209,22 @@ export const deleteColor = id => {
   };
 };
 
-// export const updateComment = (id, noteObj) => {
-//   return dispatch => {
-//     return fetch(`http://localhost:4000/api/v1/notes/${id}`, {
-//       method: "PATCH",
-//       headers: {
-//         Authorization: `Bearer ${localStorage.token}`
-//       },
-//       body: JSON.stringify()
-//     })
-//       .then(resp => resp.json(noteObj))
-//       .then(json => dispatch(editNote(json)));
-//   };
-// };
+export const updateComment = (id, index) => {
+  console.log(id, index);
+  return dispatch => {
+    return fetch(`http://localhost:4000/api/v1/notes/${id}`, {
+      method: "PATCH",
+      headers: {
+        Authorization: `Bearer ${localStorage.token}`,
+        "Content-Type": "application/json",
+        accepts: "application/json"
+      },
+      body: JSON.stringify({ notes: { idx: index } })
+    })
+      .then(resp => resp.json())
+      .then(json => dispatch(editNote(json)));
+  };
+};
 
 export const removeComment = id => {
   return dispatch => {
