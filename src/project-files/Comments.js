@@ -21,6 +21,7 @@ class Comments extends React.Component {
   onDragEnd = result => {
     // Does the dragging magic. Result is an object created by DND
     const { destination, source } = result;
+    console.log(result);
     if (!destination) {
       return;
     }
@@ -52,7 +53,7 @@ class Comments extends React.Component {
     const commentObj = {
       user_id: this.props.user.id,
       project_id: this.props.project.id,
-      type_name: "note",
+      idx: this.props.comments.length - 1,
       comment: this.state.comment
     };
     this.props.addComment(commentObj);

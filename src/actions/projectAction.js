@@ -204,6 +204,20 @@ export const deleteColor = id => {
   };
 };
 
+// export const updateComment = (id, noteObj) => {
+//   return dispatch => {
+//     return fetch(`http://localhost:4000/api/v1/notes/${id}`, {
+//       method: "PATCH",
+//       headers: {
+//         Authorization: `Bearer ${localStorage.token}`
+//       },
+//       body: JSON.stringify()
+//     })
+//       .then(resp => resp.json(noteObj))
+//       .then(json => dispatch(editNote(json)));
+//   };
+// };
+
 export const removeComment = id => {
   return dispatch => {
     return fetch(`http://localhost:4000/api/v1/notes/${id}`, {

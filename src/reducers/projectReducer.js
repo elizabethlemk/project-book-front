@@ -95,6 +95,14 @@ const projectReducer = (state = initialState, action) => {
         ...state,
         colors: newColors
       };
+    case "LOG_OUT":
+      return {
+        project: {},
+        colors: [],
+        comments: [],
+        links: [],
+        images: []
+      };
     default:
       return state;
   }
