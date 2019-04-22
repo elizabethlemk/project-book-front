@@ -25,7 +25,6 @@ class Comments extends React.Component {
   onDragEnd = result => {
     // Does the dragging magic. Result is an object created by DND
     const { destination, source, draggableId } = result;
-    console.log(result);
     if (!destination) {
       return;
     }
@@ -35,8 +34,8 @@ class Comments extends React.Component {
     ) {
       return;
     }
-    const notes = [...this.props.comments];
-    const note = this.props.comments[source.index];
+    const notes = [...this.state.notes];
+    const note = this.state.notes[source.index];
     notes.splice(source.index, 1);
     notes.splice(destination.index, 0, note);
     // This saves the order of the comments in the array
@@ -89,12 +88,12 @@ class Comments extends React.Component {
             // These are draggable components
           }
 
-          <Droppable droppableId="tableBody">
+          <Droppable droppableId={`droppable-${this.props.project.id}`}>
             {(provided, snapshot) => (
               <Ref innerRef={provided.innerRef}>
                 <Table.Body {...provided.droppableProps}>
-                  {this.props.comments.length > 0
-                    ? this.props.comments.map((note, index) => (
+                  {this.state.notes.length > 0
+                    ? this.state.notes.map((note, index) => (
                         <Note
                           index={index}
                           note={note}

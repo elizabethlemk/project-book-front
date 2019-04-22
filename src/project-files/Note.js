@@ -1,5 +1,5 @@
 import React from "react";
-import { Button, Ref, Table } from "semantic-ui-react";
+import { Icon, Ref, Table } from "semantic-ui-react";
 import { Draggable } from "react-beautiful-dnd";
 
 const Note = ({ note, index, removeItem }) => {
@@ -10,14 +10,15 @@ const Note = ({ note, index, removeItem }) => {
           <Table.Row {...provided.draggableProps} {...provided.dragHandleProps}>
             <Table.Cell>
               {note.comment}
-              <Button
-                icon="close"
-                size="mini"
+              <Icon
+                name="close"
+                size="small"
+                color="grey"
                 style={{
-                  backgroundColor: "lightgray",
                   padding: "0",
                   float: "right",
-                  marginLeft: "15px"
+                  marginLeft: ".5rem",
+                  marginTop: ".4rem"
                 }}
                 onClick={() => removeItem(index, note.id)}
               />
