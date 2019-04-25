@@ -8,6 +8,8 @@ Project Book is a website for designers to organize all their notes, images, and
 Users can upload their own images, create their own color palette, and organize their notes and memos.
 Users can also write blog posts.
 The browse feature allows users to view other users' projects and blogs.
+### Link to Backend
+https://github.com/elizabethlemk/project-book-back
 
 
 Demo Video
